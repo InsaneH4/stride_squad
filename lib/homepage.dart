@@ -22,7 +22,7 @@ class _HomepageState extends State<Homepage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
+          children: [
             const Text(
               'You have pushed the button this many times:',
             ),
@@ -31,7 +31,7 @@ class _HomepageState extends State<Homepage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Ring(
-              percent: counter * 5 < 100 ? counter * 5.0 : 100,
+              percent: counter * 5 < 100 ? counter * 5 : 100,
               color: RingColorScheme(ringColor: Colors.red),
               radius: 75,
               width: 10,
