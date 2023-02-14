@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({super.key, required this.title});
+class Profile extends StatefulWidget {
+  const Profile({super.key, required this.title});
 
   final String title;
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _SettingsState extends State<Settings> {
+class _ProfileState extends State<Profile> {
   var counter = 0;
 
   @override
@@ -23,12 +23,13 @@ class _SettingsState extends State<Settings> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Settings',
+              'Profile',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
           ],
         ),
       ),
+
     );
   }
 }

@@ -1,26 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:stride_squad/homepage.dart';
 
-//Use debugPrint() to print stuff
-void main() {
-  //Keeps device in portrait rotation
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(const MyApp());  
+class Leaderboard extends StatefulWidget {
+  const Leaderboard({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<Leaderboard> createState() => _LeaderboardState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _LeaderboardState extends State<Leaderboard> {
+  var counter = 0;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Stride Squad',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
       ),
-      home: const Homepage(title: 'Home'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'Leaderboard',
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
