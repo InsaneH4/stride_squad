@@ -23,8 +23,8 @@ class _ChatState extends State<Chat> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Chat',
-              style: Theme.of(context).textTheme.headlineLarge,
+              'In progress...',
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
         ),

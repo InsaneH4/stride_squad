@@ -23,8 +23,8 @@ class _LeaderboardState extends State<Leaderboard> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Leaderboard',
-              style: Theme.of(context).textTheme.headlineLarge,
+              'In progress...',
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
         ),

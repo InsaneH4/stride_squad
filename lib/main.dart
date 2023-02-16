@@ -22,12 +22,40 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Stride Squad',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        useMaterial3: true,
+        primarySwatch: Colors.teal,
         textTheme: const TextTheme(
           headlineLarge: TextStyle(
             fontSize: 60,
             fontWeight: FontWeight.bold,
             color: Colors.black,
+          ),
+          headlineMedium: TextStyle(
+            fontSize: 48,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          headlineSmall: TextStyle(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.teal,
+          foregroundColor: Colors.white,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.teal,
+            foregroundColor: Colors.white,
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 48,
           ),
         ),
       ),
@@ -60,7 +88,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.teal,
         unselectedItemColor: Colors.grey,
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),

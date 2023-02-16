@@ -23,8 +23,8 @@ class _ProfileState extends State<Profile> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Profile',
-              style: Theme.of(context).textTheme.headlineLarge,
+              'In progress...',
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
         ),

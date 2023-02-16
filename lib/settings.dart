@@ -23,8 +23,8 @@ class _SettingsState extends State<Settings> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Settings',
-              style: Theme.of(context).textTheme.headlineLarge,
+              'In progress...',
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
         ),

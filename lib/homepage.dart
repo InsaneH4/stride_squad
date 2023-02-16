@@ -23,8 +23,13 @@ class _HomepageState extends State<Homepage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text(
-              'You have pushed the button this many times:',
+            const Padding(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: Text(
+                'You have pushed the button this many times:',
+                style: TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              ),
             ),
             Text(
               '$counter',
@@ -32,7 +37,7 @@ class _HomepageState extends State<Homepage> {
             ),
             Ring(
               percent: counter * 5 < 100 ? counter * 5 : 100,
-              color: RingColorScheme(ringColor: Colors.red),
+              color: RingColorScheme(ringColor: Colors.greenAccent),
               radius: 75,
               width: 10,
             ),
