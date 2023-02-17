@@ -10,8 +10,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  var counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +22,11 @@ class _ProfileState extends State<Profile> {
           children: [
             Text(
               'In progress...',
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
-
     );
   }
 }

@@ -23,11 +23,11 @@ class _HomepageState extends State<Homepage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Text(
                 'You have pushed the button this many times:',
-                style: TextStyle(fontSize: 28),
+                style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),
             ),

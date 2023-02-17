@@ -10,8 +10,6 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
-  var counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +22,7 @@ class _ChatState extends State<Chat> {
           children: [
             Text(
               'In progress...',
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
