@@ -25,6 +25,10 @@ final lightTheme = ThemeData(
       fontSize: 28,
       color: Colors.black,
     ),
+    titleMedium: TextStyle(
+      fontSize: 24,
+      color: Colors.black,
+    ),
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: Colors.teal,
@@ -70,6 +74,10 @@ final darkTheme = ThemeData(
     ),
     titleLarge: TextStyle(
       fontSize: 28,
+      color: Colors.white,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 24,
       color: Colors.white,
     ),
   ),
