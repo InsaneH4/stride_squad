@@ -61,7 +61,7 @@ class _MainPageState extends State<MainPage> {
     const Chat(title: "Chat"),
     const Leaderboard(title: "Leaderboard"),
     const Settings(title: "Settings"),
-    const Profile(title: "Profile")
+    const Profile(title: "Profile"),
   ];
 
   @override
