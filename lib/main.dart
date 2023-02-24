@@ -54,6 +54,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  // Add this eventually https://pub.dev/packages/pedometer
   var currentIndex = 0;
   final screens = [
     const Homepage(title: "Home"),
