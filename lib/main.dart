@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage> {
   final screens = [
     const Homepage(title: "Home"),
     const Chat(title: "Chat"),
-    const Leaderboard(title: "Leaderboard"),
+     Leaderboard(title: "Leaderboard"),
     const Settings(title: "Settings"),
     const Profile(title: "Profile")
   ];
