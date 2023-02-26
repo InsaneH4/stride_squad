@@ -46,6 +46,7 @@ final lightTheme = ThemeData(
       fontWeight: FontWeight.bold,
       fontSize: 48,
     ),
+    backgroundColor: Colors.white,
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Colors.white,
@@ -103,7 +104,6 @@ final darkTheme = ThemeData(
     backgroundColor: Colors.black,
   ),
 );
-
 
 ThemeData buildCurrentTheme(ThemeController themeController) {
   switch (themeController.currentTheme) {
