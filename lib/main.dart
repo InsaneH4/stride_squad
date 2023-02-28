@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
           key: key,
           controller: themeController,
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Stride Squad',
             theme: buildCurrentTheme(themeController),
             home: const MainPage(title: 'Home'),

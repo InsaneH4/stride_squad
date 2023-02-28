@@ -13,8 +13,8 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   var firstDayOfWeek =
       DateTime.now().subtract(Duration(days: DateTime.now().weekday));
-  var mySteps = 10000;
-  var teamSteps = 40000;
+  var mySteps = 9542;
+  var teamSteps = 38922;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _HomepageState extends State<Homepage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            "Today's steps",
+            "2/28/23",
             style: Theme.of(context).textTheme.headlineSmall,
             textAlign: TextAlign.center,
           ),
