@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stride_squad/theme_conf.dart';
-import 'package:stride_squad/main.dart';
+import 'theme_conf.dart';
+import 'main.dart';
+import 'profile.dart';
 
 var isDark = appPrefs.getString("theme") == "dark" ? true : false;
 
@@ -34,6 +35,18 @@ class _SettingsState extends State<Settings> {
             Text(
               'In progress...',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Profile(title: "Profile"),
+                ),
+              ),
+              child: const Text(
+                "View Profile",
+                style: TextStyle(fontSize: 26, color: Colors.white),
+              ),
             ),
             ElevatedButton(
               onPressed: () {

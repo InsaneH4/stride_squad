@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stride_squad/homepage.dart';
-import 'package:stride_squad/chat.dart';
-import 'package:stride_squad/leaderboard.dart';
-import 'package:stride_squad/settings.dart';
-import 'package:stride_squad/profile.dart';
-import 'package:stride_squad/theme_conf.dart';
+import 'homepage.dart';
+import 'chat.dart';
+import 'leaderboard.dart';
+import 'settings.dart';
+import 'theme_conf.dart';
 
 late final SharedPreferences appPrefs;
 //Use debugPrint() to print stuff
@@ -61,7 +60,6 @@ class _MainPageState extends State<MainPage> {
     const Chat(title: "Chat"),
     const Leaderboard(title: "Leaderboard"),
     const Settings(title: "Settings"),
-    const Profile(title: "Profile"),
   ];
 
   @override
@@ -90,10 +88,6 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
           ),
         ],
       ),
