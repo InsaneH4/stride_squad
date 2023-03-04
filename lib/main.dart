@@ -55,7 +55,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   // Add this eventually https://pub.dev/packages/pedometer
   var currentIndex = 0;
-  final screens = [
+  var pageController = PageController(initialPage: 0);
+  final screensList = [
     const Homepage(title: "Home"),
     const Leaderboard(title: "Leaderboard"),
     const Chat(title: "Chat"),
@@ -71,7 +72,7 @@ class _MainPageState extends State<MainPage> {
         selectedItemColor: Colors.teal,
         unselectedItemColor: Colors.grey,
         currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
+        onTap: (newIndex) => pageController.jumpToPage(newIndex),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -91,9 +92,10 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       ),
-      body: IndexedStack(
-        index: currentIndex,
-        children: screens,
+      body: PageView(
+        controller: pageController,
+        onPageChanged: (newIndex) => setState(() => currentIndex = newIndex),
+        children: screensList,
       ),
     );
   }
