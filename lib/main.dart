@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'homepage.dart';
-import 'chat.dart';
-import 'leaderboard.dart';
-import 'settings.dart';
+import 'screens/homepage.dart';
+import 'screens/chat.dart';
+import 'screens/leaderboard.dart';
+import 'screens/settings.dart';
 import 'theme_conf.dart';
 
 late final SharedPreferences appPrefs;
@@ -57,8 +57,8 @@ class _MainPageState extends State<MainPage> {
   var currentIndex = 0;
   final screens = [
     const Homepage(title: "Home"),
-    const Chat(title: "Chat"),
     const Leaderboard(title: "Leaderboard"),
+    const Chat(title: "Chat"),
     const Settings(title: "Settings"),
   ];
 

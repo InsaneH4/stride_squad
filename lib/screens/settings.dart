@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'theme_conf.dart';
-import 'main.dart';
+import '/theme_conf.dart';
+import '/main.dart';
 import 'profile.dart';
 
 var isDark = appPrefs.getString("theme") == "dark" ? true : false;
