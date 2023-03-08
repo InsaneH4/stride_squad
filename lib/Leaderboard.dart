@@ -21,6 +21,24 @@ class _LeaderboardState extends State<Leaderboard> {
         children: [
           Expanded(
             child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                   Container(
+                  width: 160.0,
+                  color: Colors.red,
+                ),
+                   Container(
+                  width: 160.0,
+                  color: Colors.red,
+                ),
+                   Container(
+                  width: 160.0,
+                  color: Colors.red,
+                ),
+              ],
+            ),
+          ),
+            ListView(
               children: <Widget>[
                 Card(
                   color: Colors.lightGreen,
@@ -102,7 +120,6 @@ class _LeaderboardState extends State<Leaderboard> {
                 ),
               ],
             ),
-          ),
         ],
       ),
     );
