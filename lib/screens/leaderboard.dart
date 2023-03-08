@@ -13,9 +13,55 @@ class _LeaderboardState extends State<Leaderboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+      appBar: AppBar(
+        title: const Text("LeaderBoard"),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+      ),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: 75,
+                child: ListView.builder(
+                  itemCount: 3,
+                    scrollDirection: Axis.horizontal,
+                     itemBuilder:(context, index) => Container(
+                      height: 100,
+                      width: 100,
+                      margin: const EdgeInsets.all(10),
+                      child: Center(
+                        child: Text(
+                          "Team ${index+1}",
+                          style: const TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.w700),
+                      ),
+                    )
+                  )
+              )
+            ),
+          Flexible(
+            child: ListView.builder(
+              itemCount: 17,
+              //controller: AdjustableScrollController(80)
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) => ListTile(
+                title: Text('RedDashers ${index+4}', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w500 , color: Colors.black)),
+                onTap: () {
+                      debugPrint("tapped");
+                    },
+                leading: const CircleAvatar(
+                        backgroundImage: AssetImage(
+                            "image_assets/Stock_LeaderBoard_image.png")),
+                )
+              )
+            )
+          ]
+        ),
+       )
+        /*children: [
           Expanded(
             child: ListView(
               scrollDirection: Axis.horizontal,
@@ -117,7 +163,7 @@ class _LeaderboardState extends State<Leaderboard> {
                 ),
               ],
             ),
-        ],
+        */,
       ),
     );
   }
