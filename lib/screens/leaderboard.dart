@@ -13,158 +13,98 @@ class _LeaderboardState extends State<Leaderboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("LeaderBoard"),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                height: 75,
+      body: SingleChildScrollView(
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: Text("Leaderboard",
+                  style: Theme.of(context).textTheme.headlineMedium),
+            ),
+            SizedBox(
+              height: 125,
+              child: Center(
                 child: ListView.builder(
                   itemCount: 3,
-                    scrollDirection: Axis.horizontal,
-                     itemBuilder:(context, index) => Container(
-                      height: 100,
-                      width: 100,
-                      margin: const EdgeInsets.all(10),
-                      child: Center(
-                        child: Text(
-                          "Team ${index+1}",
-                          style: const TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.w700),
-                      ),
-                    )
-                  )
-              )
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        const CircleAvatar(
+                          backgroundImage: AssetImage(
+                              "image_assets/Stock_LeaderBoard_image.png"),
+                          radius: 30,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            "Team ${index + 1}",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
-          Flexible(
-            child: ListView.builder(
-              itemCount: 17,
-              //controller: AdjustableScrollController(80)
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index) => ListTile(
-                title: Text('RedDashers ${index+4}', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w500 , color: Colors.black)),
-                onTap: () {
-                      debugPrint("tapped");
-                    },
-                leading: const CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                )
-              )
+            Flexible(
+              child: ListView.builder(
+                itemCount: 17,
+                //controller: AdjustableScrollController(80),
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) => Card(
+                  child: ListTile(
+                    title: Text(
+                      'RedDashers ${index + 4}',
+                      style: const TextStyle(fontSize: 28, color: Colors.black),
+                    ),
+                    onTap: showTeamDialog,
+                    leading: const CircleAvatar(
+                      backgroundImage: AssetImage(
+                          "image_assets/Stock_LeaderBoard_image.png"),
+                    ),
+                  ),
+                ),
+              ),
             )
-          ]
+          ],
         ),
-       )
-        /*children: [
-          Expanded(
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                   Container(
-                  width: 160.0,
-                  color: Colors.red,
-                ),
-                   Container(
-                  width: 160.0,
-                  color: Colors.red,
-                ),
-                   Container(
-                  width: 160.0,
-                  color: Colors.red,
-                ),
+      ),
+    );
+  }
+
+  Future<void> showTeamDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Team name',
+            style: TextStyle(color: Colors.black),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Team picture and info will be here'),
               ],
             ),
           ),
-            ListView(
-              children: <Widget>[
-                Card(
-                  color: Colors.lightGreen,
-                  child: ListTile(
-                    title: const Text(
-                      'With LightGreen Background',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    onTap: () {
-                      debugPrint("tapped");
-                    },
-                    leading: const CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                  ),
-                ),
-                const Card(
-                  child: ListTile(
-                    title: Text('RedDashers',
-                        style: TextStyle(color: Colors.black)),
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                  ),
-                ),
-                const Card(
-                  child: ListTile(
-                    title: Text('White Hills',
-                        style: TextStyle(color: Colors.black)),
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                  ),
-                ),
-                const Card(
-                  child: ListTile(
-                    title: Text('Snow Climbers',
-                        style: TextStyle(color: Colors.black)),
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                  ),
-                ),
-                const Card(
-                  child: ListTile(
-                    title:
-                        Text('Hell Cat', style: TextStyle(color: Colors.black)),
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                  ),
-                ),
-                const Card(
-                  child: ListTile(
-                    title: Text('Bob the Bully',
-                        style: TextStyle(color: Colors.black)),
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                  ),
-                ),
-                const Card(
-                  child: ListTile(
-                    title:
-                        Text('Test 1', style: TextStyle(color: Colors.black)),
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                  ),
-                ),
-                const Card(
-                  child: ListTile(
-                    title:
-                        Text('Test 2', style: TextStyle(color: Colors.black)),
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png")),
-                  ),
-                ),
-              ],
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-        */,
-      ),
+          ],
+        );
+      },
     );
   }
 }
