@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stride_squad/homepage.dart';
-import 'package:stride_squad/chat.dart';
-import 'package:stride_squad/leaderboard.dart';
-import 'package:stride_squad/settings.dart';
-import 'package:stride_squad/profile.dart';
-import 'package:stride_squad/theme_conf.dart';
+import 'screens/homepage.dart';
+import 'screens/chat.dart';
+import 'screens/leaderboard.dart';
+import 'screens/settings.dart';
+import 'theme_conf.dart';
 
 late final SharedPreferences appPrefs;
 //Use debugPrint() to print stuff
@@ -56,12 +55,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   // Add this eventually https://pub.dev/packages/pedometer
   var currentIndex = 0;
-  final screens = [
+  var pageController = PageController(initialPage: 0);
+  final screensList = [
     const Homepage(title: "Home"),
-    const Chat(title: "Chat"),
     const Leaderboard(title: "Leaderboard"),
+    const Chat(title: "Chat"),
     const Settings(title: "Settings"),
-    const Profile(title: "Profile")
   ];
 
   @override
@@ -73,33 +72,30 @@ class _MainPageState extends State<MainPage> {
         selectedItemColor: Colors.teal,
         unselectedItemColor: Colors.grey,
         currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
+        onTap: (newIndex) => pageController.jumpToPage(newIndex),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart),
             label: 'Leaderboard',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Chat',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
         ],
       ),
-      body: IndexedStack(
-        index: currentIndex,
-        children: screens,
+      body: PageView(
+        controller: pageController,
+        onPageChanged: (newIndex) => setState(() => currentIndex = newIndex),
+        children: screensList,
       ),
     );
   }
