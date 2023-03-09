@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:activity_ring/activity_ring.dart';
+import '/main.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key, required this.title});
@@ -13,7 +14,8 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   var firstDayOfWeek =
       DateTime.now().subtract(Duration(days: DateTime.now().weekday));
-  var mySteps = 9542;
+
+  //var mySteps = 9542;
   var teamSteps = 38922;
 
   @override
@@ -30,13 +32,16 @@ class _HomepageState extends State<Homepage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                'You: $mySteps',
-                style: const TextStyle(
-                  color: Colors.teal,
-                  fontSize: 28,
+              ValueListenableBuilder(
+                valueListenable: myStepsNotifier,
+                builder: (context, value, child) => Text(
+                  'You: $value',
+                  style: const TextStyle(
+                    color: Colors.teal,
+                    fontSize: 28,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
               Text(
                 'Team: $teamSteps',

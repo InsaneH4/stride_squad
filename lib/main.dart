@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pedometer/pedometer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/homepage.dart';
 import 'screens/chat.dart';
@@ -8,6 +9,7 @@ import 'screens/settings.dart';
 import 'theme_conf.dart';
 
 late final SharedPreferences appPrefs;
+var myStepsNotifier = ValueNotifier('?');
 //Use debugPrint() to print stuff
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +64,31 @@ class _MainPageState extends State<MainPage> {
     const Chat(title: "Chat"),
     const Settings(title: "Settings"),
   ];
+  late Stream<StepCount> stepCountStream;
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  void onStepCount(StepCount event) {
+    myStepsNotifier.value = event.steps.toString();
+    debugPrint(myStepsNotifier.value);
+  }
+
+  void onStepCountError(error) {
+    debugPrint('onStepCountError: $error');
+    setState(() {
+      myStepsNotifier.value = 'Step Count not available';
+    });
+  }
+
+  void initPlatformState() {
+    stepCountStream = Pedometer.stepCountStream;
+    stepCountStream.listen(onStepCount).onError(onStepCountError);
+    if (!mounted) return;
+  }
 
   @override
   Widget build(BuildContext context) {
