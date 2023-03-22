@@ -1,3 +1,5 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 class Leaderboard extends StatefulWidget {
@@ -13,71 +15,132 @@ class _LeaderboardState extends State<Leaderboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(30),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+              padding: const EdgeInsets.only(left: 40.0, top: 25.0, right: 40.0, bottom: 4.0),
               child: Text("Leaderboard",
-                  style: Theme.of(context).textTheme.headlineMedium),
+                  style: Theme.of(context).textTheme.headlineSmall),
             ),
-            SizedBox(
-              height: 125,
-              child: Center(
-                child: ListView.builder(
-                  itemCount: 3,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
+          // Horizontal Row containing Top 3 Teams
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [ 
+              Column(
                       children: [
                         const CircleAvatar(
                           backgroundImage: AssetImage(
                               "image_assets/Stock_LeaderBoard_image.png"),
-                          radius: 30,
+                          radius: 35,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
                           child: Text(
-                            "Team ${index + 1}",
-                            style: Theme.of(context).textTheme.titleMedium,
+                            "Team",
+                            style: Theme.of(context).textTheme.titleSmall
+                              )
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
+                          child: Text(
+                            "1",
+                            style: Theme.of(context).textTheme.titleMedium,
+                              )
+                          ),  
+                      ]
               ),
-            ),
-            Flexible(
-              child: ListView.builder(
-                itemCount: 17,
-                //controller: AdjustableScrollController(80),
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) => Card(
+              Column(
+                      children: [
+                        const CircleAvatar(
+                          backgroundImage: AssetImage(
+                              "image_assets/Stock_LeaderBoard_image.png"),
+                          radius: 35,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
+                          child: Text(
+                            "Team",
+                            style: Theme.of(context).textTheme.titleSmall,
+                              )
+                          ),
+                          Padding(
+                          padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
+                          child: Text(
+                            "2",
+                            style: Theme.of(context).textTheme.titleMedium,
+                              )
+                          ),
+                      ]
+              ),
+              Column(
+                      children: [
+                        const CircleAvatar(
+                          backgroundImage: AssetImage(
+                              "image_assets/Stock_LeaderBoard_image.png"),
+                          radius: 35,
+                        ),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
+                            child: Text(
+                              "Team",
+                              style: Theme.of(context).textTheme.titleSmall,
+                                )
+                            ),
+                            Padding(
+                            padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
+                            child: Text(
+                              "3",
+                              style: Theme.of(context).textTheme.titleMedium,
+                                )
+                           ),   
+                      ]
+              ),
+          ],),
+          const Divider(
+            height: 2,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 17,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) => Card(
                   child: ListTile(
-                    title: Text(
-                      'RedDashers ${index + 4}',
-                      style: const TextStyle(fontSize: 28, color: Colors.black),
+                    tileColor: Colors.white,
+                    //shape:Border.all(width: 0.5),
+                    trailing: Transform(
+                      transform: Matrix4.translationValues(-160, 0.0, 0.0), 
+                        child: const Text(
+                          'RedDashers',
+                          style: TextStyle(fontSize: 20, color: Colors.black), 
+                        ),
+                        ),
+                    leading: Transform(
+                      transform: Matrix4.translationValues(2, 0.0, 0.0),
+                        child: Text(
+                          '${index + 4}',
+                          style: const TextStyle(fontSize: 18, color: Colors.black),
+                        ),
                     ),
-                    onTap: showTeamDialog,
-                    leading: const CircleAvatar(
-                      backgroundImage: AssetImage(
-                          "image_assets/Stock_LeaderBoard_image.png"),
-                    ),
-                  ),
+                    // onTap: showTeamDialog,
+                    title: Transform(
+                      transform: Matrix4.translationValues(-90, 0.0, 0.0), 
+                         child: const CircleAvatar(
+                          radius: 22,
+                          backgroundImage: AssetImage(
+                              "image_assets/Stock_LeaderBoard_image.png"),
                 ),
+                ),
+          )
               ),
             )
-          ],
-        ),
-      ),
-    );
+                ),
+              ]
+        )
+      ); //,
   }
-
+} 
+/*
   Future<void> showTeamDialog() async {
     return showDialog<void>(
       context: context,
@@ -97,7 +160,7 @@ class _LeaderboardState extends State<Leaderboard> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Approve'),
+              child: const Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -108,3 +171,4 @@ class _LeaderboardState extends State<Leaderboard> {
     );
   }
 }
+*/
