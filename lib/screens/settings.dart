@@ -30,7 +30,8 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
           children: [
             Text(
               'In progress...',
@@ -56,6 +57,11 @@ class _SettingsState extends State<Settings> {
                     : ThemeController.of(context).setTheme("light", isDark);
               },
               child: const Text('Switch Theme',
+                  style: TextStyle(fontSize: 26, color: Colors.white)),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Sign Out',
                   style: TextStyle(fontSize: 26, color: Colors.white)),
             ),
           ],
