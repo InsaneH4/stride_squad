@@ -29,7 +29,14 @@ final lightTheme = ThemeData(
       fontSize: 24,
       color: Colors.black,
     ),
+    titleSmall: TextStyle(
+      fontSize: 20,
+      color: Colors.black,
+    ),
   ),
+  listTileTheme: const ListTileThemeData(
+    tileColor: Colors.white
+    ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: Colors.teal,
     foregroundColor: Colors.white,
@@ -41,6 +48,10 @@ final lightTheme = ThemeData(
     ),
   ),
   appBarTheme: const AppBarTheme(
+    iconTheme: IconThemeData(
+      color: Colors.black,
+      size: 48,
+    ),
     titleTextStyle: TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.bold,
@@ -79,6 +90,10 @@ final darkTheme = ThemeData(
     ),
     titleMedium: TextStyle(
       fontSize: 24,
+      color: Colors.white,  
+    ),
+    titleSmall: TextStyle(
+      fontSize: 20,
       color: Colors.white,
     ),
   ),
@@ -92,7 +107,14 @@ final darkTheme = ThemeData(
       foregroundColor: Colors.white,
     ),
   ),
+  listTileTheme: const ListTileThemeData(
+    tileColor: Colors.black,
+  ),
   appBarTheme: const AppBarTheme(
+    iconTheme: IconThemeData(
+      color: Colors.white,
+      size: 48,
+    ),
     titleTextStyle: TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.bold,

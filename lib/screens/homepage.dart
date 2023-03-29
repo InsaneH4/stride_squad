@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:activity_ring/activity_ring.dart';
+import '/main.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key, required this.title});
@@ -13,33 +14,34 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   var firstDayOfWeek =
       DateTime.now().subtract(Duration(days: DateTime.now().weekday));
-  var mySteps = 10000;
-  var teamSteps = 40000;
+
+  //var mySteps = 9542;
+  var teamSteps = 38922;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            "Today's steps",
+            "Today's step's",
             style: Theme.of(context).textTheme.headlineSmall,
             textAlign: TextAlign.center,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                'You: $mySteps',
-                style: const TextStyle(
-                  color: Colors.teal,
-                  fontSize: 28,
+              ValueListenableBuilder(
+                valueListenable: myStepsNotifier,
+                builder: (context, value, child) => Text(
+                  'You: $value',
+                  style: const TextStyle(
+                    color: Colors.teal,
+                    fontSize: 28,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
               Text(
                 'Team: $teamSteps',
