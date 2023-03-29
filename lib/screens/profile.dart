@@ -20,13 +20,13 @@ class _ProfileState extends State<Profile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 18.0),
+            padding: const EdgeInsets.only(left: 18.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.teal,
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'First Name: ',
@@ -39,15 +39,15 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-          SizedBox(height: 5.0),
+          const SizedBox(height: 5.0),
           Padding(
-            padding: EdgeInsets.only(left: 18.0),
+            padding: const EdgeInsets.only(left: 18.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.teal,
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Last Name: ',
@@ -60,15 +60,15 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-          SizedBox(height: 5.0),
+          const SizedBox(height: 5.0),
           Padding(
-            padding: EdgeInsets.only(left: 18.0),
+            padding: const EdgeInsets.only(left: 18.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.teal,
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Date Joined: ',
@@ -81,15 +81,15 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-          SizedBox(height: 5.0),
+          const SizedBox(height: 5.0),
           Padding(
-            padding: EdgeInsets.only(left: 18.0),
+            padding: const EdgeInsets.only(left: 18.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.teal,
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Lifetime Steps: ',
@@ -102,15 +102,15 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-          SizedBox(height: 5.0),
+          const SizedBox(height: 5.0),
           Padding(
-            padding: EdgeInsets.only(left: 18.0),
+            padding: const EdgeInsets.only(left: 18.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.teal,
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Weekly Average Steps: ',
