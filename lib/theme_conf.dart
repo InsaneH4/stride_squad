@@ -29,6 +29,10 @@ final lightTheme = ThemeData(
       fontSize: 24,
       color: Colors.black,
     ),
+    titleSmall: TextStyle(
+      fontSize: 20,
+      color: Colors.black,
+    ),
   ),
   listTileTheme: const ListTileThemeData(
     tileColor: Colors.white
@@ -86,6 +90,10 @@ final darkTheme = ThemeData(
     ),
     titleMedium: TextStyle(
       fontSize: 24,
+      color: Colors.white,  
+    ),
+    titleSmall: TextStyle(
+      fontSize: 20,
       color: Colors.white,
     ),
   ),

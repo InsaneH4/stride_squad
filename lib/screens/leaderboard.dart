@@ -19,10 +19,10 @@ class _LeaderboardState extends State<Leaderboard> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-              padding: const EdgeInsets.only(left: 40.0, top: 25.0, right: 40.0, bottom: 4.0),
-              child: Text("Leaderboard",
-                  style: Theme.of(context).textTheme.headlineSmall),
-            ),
+              padding: const EdgeInsets.only(left: 40.0, top: 16.0, right: 40.0, bottom: 4.0),
+              //child: Text("Leaderboard",
+              //    style: Theme.of(context).textTheme.headlineSmall),
+            ),  
           // Horizontal Row containing Top 3 Teams
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,17 +37,18 @@ class _LeaderboardState extends State<Leaderboard> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
                           child: Text(
-                            "Team",
-                            style: Theme.of(context).textTheme.titleSmall
+                            "Team 1",
+                            style: Theme.of(context).textTheme.titleMedium
                               )
                           ),
-                        Padding(
+                        /*Padding(
                           padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                           child: Text(
                             "1",
                             style: Theme.of(context).textTheme.titleMedium,
                               )
                           ),  
+                          */
                       ]
               ),
               Column(
@@ -60,17 +61,18 @@ class _LeaderboardState extends State<Leaderboard> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
                           child: Text(
-                            "Team",
-                            style: Theme.of(context).textTheme.titleSmall,
+                            "Team 2",
+                            style: Theme.of(context).textTheme.titleMedium,
                               )
                           ),
-                          Padding(
+                          /*Padding(
                           padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                           child: Text(
                             "2",
                             style: Theme.of(context).textTheme.titleMedium,
                               )
                           ),
+                          */
                       ]
               ),
               Column(
@@ -83,30 +85,32 @@ class _LeaderboardState extends State<Leaderboard> {
                       Padding(
                           padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
                             child: Text(
-                              "Team",
-                              style: Theme.of(context).textTheme.titleSmall,
+                              "Team 3",
+                              style: Theme.of(context).textTheme.titleMedium,
                                 )
                             ),
-                            Padding(
+                            /*Padding(
                             padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                             child: Text(
                               "3",
                               style: Theme.of(context).textTheme.titleMedium,
                                 )
                            ),   
+                           */
                       ]
               ),
           ],),
           const Divider(
-            height: 2,
+            height: 1,
           ),
           Expanded(
             child: ListView.builder(
+              padding: const EdgeInsets.only(top: 3.5),
               itemCount: 17,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) => Card(
                   child: ListTile(
-                    tileColor: Theme.of(context).primaryColor,
+                    tileColor: Colors.white,
                     //shape:Border.all(width: 0.5),
                     trailing: Transform(
                       transform: Matrix4.translationValues(-160, 0.0, 0.0), 
