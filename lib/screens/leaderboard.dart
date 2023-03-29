@@ -114,22 +114,22 @@ class _LeaderboardState extends State<Leaderboard> {
                     tileColor: Colors.white,
                     //shape:Border.all(width: 0.5),
                     trailing: Transform(
-                      transform: Matrix4.translationValues(-160, 0.0, 0.0), 
+                      transform: Matrix4.translationValues(-90, 0.0, 0.0), 
                         child: const Text(
                           'RedDashers',
-                          style: TextStyle(fontSize: 20, color: Colors.black), 
+                          style: TextStyle(fontSize: 32, color: Colors.black), 
                         ),
                         ),
                     leading: Transform(
                       transform: Matrix4.translationValues(2, 0.0, 0.0),
                         child: Text(
                           '${index + 4}',
-                          style: const TextStyle(fontSize: 18, color: Colors.black),
+                          style: const TextStyle(fontSize: 26, color: Colors.black),
                         ),
                     ),
                     // onTap: showTeamDialog,
                     title: Transform(
-                      transform: Matrix4.translationValues(-90, 0.0, 0.0), 
+                      transform: Matrix4.translationValues(-50, 0.0, 0.0), 
                          child: const CircleAvatar(
                           radius: 22,
                           backgroundImage: AssetImage(
