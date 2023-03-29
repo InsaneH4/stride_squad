@@ -40,6 +40,8 @@ dependencies:
   shared_preferences: ^2.0.17
   pedometer: ^3.0.0
   permission_handler: ^10.2.0
+  firebase: ^9.0.3
+  firebase_core: ^2.8.0
 
 dev_dependencies:
   flutter_test:

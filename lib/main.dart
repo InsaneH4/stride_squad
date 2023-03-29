@@ -3,14 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/homepage.dart';
 import 'screens/chat.dart';
 import 'screens/leaderboard.dart';
 import 'screens/settings.dart';
 import 'theme_conf.dart';
+import 'firebase_options.dart';
 
 late final SharedPreferences appPrefs;
-var myStepsNotifier = ValueNotifier('?');
+var myStepsNotifier = ValueNotifier('Error');
 //Use debugPrint() to print stuff
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -110,7 +112,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!activityGranted) {
+    /*if (!activityGranted) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -131,7 +133,7 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       );
-    }
+    }*/
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>637251115626-kki7nefme53uvqb977eme9htsgh4h9u5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.637251115626-kki7nefme53uvqb977eme9htsgh4h9u5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD889R__AcX-cDbBz2go1SuO8jtWS5lCCE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>637251115626</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.strideSquad</string>
+	<key>PROJECT_ID</key>
+	<string>stride-squad</string>
+	<key>STORAGE_BUCKET</key>
+	<string>stride-squad.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:637251115626:ios:01b2859dcfa8d423200813</string>
+</dict>
+</plist>
