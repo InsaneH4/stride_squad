@@ -106,7 +106,7 @@ class _LeaderboardState extends State<Leaderboard> {
           ),
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.only(top: 2),
+              padding: const EdgeInsets.only(top: 10),
               itemCount: 17,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) => Card(
