@@ -144,8 +144,15 @@ class _LeaderboardState extends State<Leaderboard> {
       ); //,
   }
 } 
-/*
-  Future<void> showTeamDialog() async {
+
+void alertDialog(BuildContext context){
+  var alert = const AlertDialog(
+    title: Text("My title"),
+    content: Text("Dialog description"),
+  );
+  showDialog(context: context, builder: (BuildContext context) => alert);
+}
+  /*Future<void> showTeamDialog() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
