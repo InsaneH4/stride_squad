@@ -106,7 +106,7 @@ class _LeaderboardState extends State<Leaderboard> {
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) => Card(
                   child: ListTile(
-                    tileColor: Colors.white,
+                    tileColor: Theme.of(context).primaryColor,
                     //shape:Border.all(width: 0.5),
                     trailing: Transform(
                       transform: Matrix4.translationValues(-160, 0.0, 0.0), 

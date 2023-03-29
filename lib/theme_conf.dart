@@ -30,6 +30,9 @@ final lightTheme = ThemeData(
       color: Colors.black,
     ),
   ),
+  listTileTheme: const ListTileThemeData(
+    tileColor: Colors.white
+    ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: Colors.teal,
     foregroundColor: Colors.white,
@@ -95,6 +98,9 @@ final darkTheme = ThemeData(
       backgroundColor: Colors.teal,
       foregroundColor: Colors.white,
     ),
+  ),
+  listTileTheme: const ListTileThemeData(
+    tileColor: Colors.black,
   ),
   appBarTheme: const AppBarTheme(
     iconTheme: IconThemeData(
