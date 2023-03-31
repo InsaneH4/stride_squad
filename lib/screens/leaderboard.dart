@@ -102,18 +102,19 @@ class _LeaderboardState extends State<Leaderboard> {
         itemBuilder: (context, index) => SizedBox(
           height: 90,
           child: Card(
+              color: Colors.white.withOpacity(0.90),
               child: ListTile(
-            tileColor: Colors.white,
+            tileColor: Colors.white.withOpacity(0.0),
             //shape:Border.all(width: 0.5),
             trailing: Transform(
-              transform: Matrix4.translationValues(-90, 0.0, 0.0),
+              transform: Matrix4.translationValues(-80, 11.0, 0.0),
               child: const Text(
                 'RedDashers',
                 style: TextStyle(fontSize: 32, color: Colors.black),
               ),
             ),
             leading: Transform(
-              transform: Matrix4.translationValues(2, 0.0, 0.0),
+              transform: Matrix4.translationValues(2, 11.0, 0.0),
               child: Text(
                 '${index + 4}',
                 style: const TextStyle(fontSize: 26, color: Colors.black),
@@ -121,7 +122,7 @@ class _LeaderboardState extends State<Leaderboard> {
             ),
             // onTap: showTeamDialog,
             title: Transform(
-              transform: Matrix4.translationValues(-50, 0.0, 0.0),
+              transform: Matrix4.translationValues(-50, 12.0, 0.0),
               child: const CircleAvatar(
                 radius: 22,
                 backgroundImage:
