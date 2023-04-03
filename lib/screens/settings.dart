@@ -29,7 +29,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Settings',
           style: TextStyle(
             color: Colors.white,
@@ -45,10 +45,10 @@ class _SettingsState extends State<Settings> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: const Text(
                 'General',
                 style: TextStyle(
                   color: Colors.white,
@@ -57,7 +57,7 @@ class _SettingsState extends State<Settings> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: Container(
                 color: Colors.white,
@@ -74,7 +74,7 @@ class _SettingsState extends State<Settings> {
                         Icons.account_circle,
                         color: Theme.of(context).primaryColor,
                       ),
-                      title: Text(
+                      title: const Text(
                         'View Profile',
                         style: TextStyle(
                           color: Colors.black,
@@ -82,9 +82,9 @@ class _SettingsState extends State<Settings> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      trailing: Icon(Icons.arrow_forward_ios),
+                      trailing: const Icon(Icons.arrow_forward_ios),
                     ),
-                    Divider(),
+                    const Divider(),
                     ListTile(
                       onTap: () {
                         isDark = !isDark;
@@ -98,7 +98,7 @@ class _SettingsState extends State<Settings> {
                         Icons.brightness_medium,
                         color: Theme.of(context).primaryColor,
                       ),
-                      title: Text(
+                      title: const Text(
                         'Dark Mode',
                         style: TextStyle(
                           color: Colors.black,
@@ -121,14 +121,14 @@ class _SettingsState extends State<Settings> {
                         activeColor: Theme.of(context).primaryColor,
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                     ListTile(
                       onTap: () {},
                       leading: Icon(
                         Icons.logout,
                         color: Theme.of(context).primaryColor,
                       ),
-                      title: Text(
+                      title: const Text(
                         'Sign Out',
                         style: TextStyle(
                           color: Colors.black,
@@ -136,7 +136,7 @@ class _SettingsState extends State<Settings> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      trailing: Icon(Icons.arrow_forward_ios),
+                      trailing: const Icon(Icons.arrow_forward_ios),
                     ),
                   ],
                 ),
