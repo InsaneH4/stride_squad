@@ -63,7 +63,6 @@ class _MainPageState extends State<MainPage> {
   // Add this eventually https://pub.dev/packages/pedometer
   var currentIndex = 0;
   var pageController = PageController(initialPage: 0);
-  var activityGranted = false;
   final screensList = [
     const Homepage(title: "Home"),
     const Leaderboard(title: "Leaderboard"),
@@ -90,50 +89,14 @@ class _MainPageState extends State<MainPage> {
     if (!mounted) return;
   }
 
-  void grantActivity() async {
-    if (await Permission.activityRecognition.request() !=
-        PermissionStatus.granted) {
-      debugPrint("Permission denied");
-    }
-    if (await Permission.activityRecognition.request() ==
-        PermissionStatus.granted) {
-      setState(() {
-        activityGranted = true;
-      });
-    }
-  }
-
   @override
   void initState() {
-    grantActivity();
     initPlatformState();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    /*if (!activityGranted) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Text(
-              "Stride Squad requires access to physical activity to track your steps",
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(25),
-            child: ElevatedButton(
-              onPressed: () async => grantActivity(),
-              child: const Text("Grant Permission",
-                  style: TextStyle(fontSize: 28)),
-            ),
-          ),
-        ],
-      );
-    }*/
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
