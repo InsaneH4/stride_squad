@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/homepage.dart';
@@ -167,10 +168,19 @@ class _MainPageState extends State<MainPage> {
                   onPressed: () async {
                     //opens the system settings for this app
                     await openAppSettings();
-                    //update granted variable if permission setting is changed
                   },
                   child: const Text(
-                    "Grant Permission",
+                    "Open Settings",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () => Restart.restartApp(),
+                  child: const Text(
+                    "Reload App",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
