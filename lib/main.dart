@@ -89,46 +89,136 @@ class _MainPageState extends State<MainPage> {
     if (!mounted) return;
   }
 
+  Future<PermissionStatus> checkPermission() async {
+    var status = await Permission.activityRecognition.status;
+    if (status.isDenied) {
+      status = await Permission.activityRecognition.request();
+    }
+    return status;
+  }
+
   @override
   void initState() {
-    initPlatformState();
     super.initState();
+    initPlatformState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: false,
-        selectedItemColor: Colors.teal,
-        unselectedItemColor: Colors.grey,
-        currentIndex: currentIndex,
-        onTap: (newIndex) => pageController.jumpToPage(newIndex),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart),
-            label: 'Leaderboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-      ),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: (newIndex) => setState(() => currentIndex = newIndex),
-        children: screensList,
-      ),
+    return FutureBuilder(
+      future: checkPermission().isGranted,
+      //snapshot is the value returned by the future
+      builder: (context, AsyncSnapshot<bool> snapshot) {
+        //data is the boolean value "stored" in the snapshot
+        var granted = snapshot.data;
+        //Checks if activity permission is granted
+        if (snapshot.hasData && granted == true) {
+          return Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              showUnselectedLabels: false,
+              selectedItemColor: Colors.teal,
+              unselectedItemColor: Colors.grey,
+              currentIndex: currentIndex,
+              onTap: (newIndex) => pageController.jumpToPage(newIndex),
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.bar_chart),
+                  label: 'Leaderboard',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.chat),
+                  label: 'Chat',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Settings',
+                ),
+              ],
+            ),
+            body: PageView(
+              controller: pageController,
+              onPageChanged: (newIndex) =>
+                  setState(() => currentIndex = newIndex),
+              children: screensList,
+            ),
+          );
+        } else if (!snapshot.hasData) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          return Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Stride Squad needs access to your physical activity to track your steps\n",
+                  style: Theme.of(context).textTheme.titleLarge,
+                  textAlign: TextAlign.center,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    //opens the system settings for this app
+                    await openAppSettings();
+                    //update granted variable if permission setting is changed
+                  },
+                  child: const Text(
+                    "Grant Permission",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+      },
     );
+
+    //Old ui stuff
+    /*return Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              showUnselectedLabels: false,
+              selectedItemColor: Colors.teal,
+              unselectedItemColor: Colors.grey,
+              currentIndex: currentIndex,
+              onTap: (newIndex) => pageController.jumpToPage(newIndex),
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.bar_chart),
+                  label: 'Leaderboard',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.chat),
+                  label: 'Chat',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Settings',
+                ),
+              ],
+            ),
+            body: PageView(
+              controller: pageController,
+              onPageChanged: (newIndex) =>
+                  setState(() => currentIndex = newIndex),
+              children: screensList,
+            ),
+          );
+     */
   }
 }
