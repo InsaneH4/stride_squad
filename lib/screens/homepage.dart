@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:activity_ring/activity_ring.dart';
+import '../theme_conf.dart';
 import '/main.dart';
+
+var isDark = appPrefs.getString("theme") == "dark" ? true : false;
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key, required this.title});
@@ -21,14 +24,30 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: isDark
+                ? const Icon(Icons.brightness_high)
+                : const Icon(Icons.brightness_3),
+            onPressed: () {
+              isDark = !isDark;
+              isDark
+                  ? ThemeController.of(context).setTheme("dark", isDark)
+                  : ThemeController.of(context).setTheme("light", isDark);
+            },
+          ),
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
-            "Today's step's",
-            style: Theme.of(context).textTheme.headlineSmall,
-            textAlign: TextAlign.center,
-          ),
+          // Text(
+          //   "Today's step's",
+          //   style: Theme.of(context).textTheme.headlineSmall,
+          //   textAlign: TextAlign.center,
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -57,11 +76,14 @@ class _HomepageState extends State<Homepage> {
             padding: const EdgeInsets.all(150),
             child: Stack(
               children: [
-                Ring(
-                  percent: 40,
-                  color: RingColorScheme(ringColor: Colors.teal),
-                  radius: 150,
-                  width: 20,
+                ValueListenableBuilder(
+                  valueListenable: myStepsNotifier,
+                  builder: (context, value, child) => Ring(
+                    percent: (value / stepsGoal) * 100,
+                    color: RingColorScheme(ringColor: Colors.teal),
+                    radius: 150,
+                    width: 20,
+                  ),
                 ),
                 Ring(
                   percent: 70,

@@ -8,14 +8,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/homepage.dart';
 import 'screens/chat.dart';
 import 'screens/leaderboard.dart';
-import 'screens/settings.dart';
 import 'screens/profile.dart';
 import 'theme_conf.dart';
 import 'firebase_options.dart';
 
 late final SharedPreferences appPrefs;
-var myStepsNotifier = ValueNotifier('Error');
-var stepsGoal = "5000";
+final myStepsNotifier = ValueNotifier(-1);
+var stepsGoal = 5000;
 //Use debugPrint() to print stuff
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,7 +66,7 @@ class _MainPageState extends State<MainPage> {
   var currentIndex = 0;
   var pageController = PageController(initialPage: 0);
   final screensList = [
-    const Homepage(title: "Home"),
+    const Homepage(title: "Today's Steps"),
     const Leaderboard(title: "Leaderboard"),
     const Chat(title: "Chat"),
     const Profile(title: "Profile"),
@@ -75,14 +74,14 @@ class _MainPageState extends State<MainPage> {
   late Stream<StepCount> stepCountStream;
 
   void onStepCount(StepCount event) {
-    myStepsNotifier.value = event.steps.toString();
-    debugPrint(myStepsNotifier.value);
+    myStepsNotifier.value = event.steps;
+    debugPrint(myStepsNotifier.value.toString());
   }
 
   void onStepCountError(error) {
     debugPrint('onStepCountError: $error');
     setState(() {
-      myStepsNotifier.value = 'Step Count not available';
+      myStepsNotifier.value = -1;
     });
   }
 
