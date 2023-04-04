@@ -9,11 +9,13 @@ import 'screens/homepage.dart';
 import 'screens/chat.dart';
 import 'screens/leaderboard.dart';
 import 'screens/settings.dart';
+import 'screens/profile.dart';
 import 'theme_conf.dart';
 import 'firebase_options.dart';
 
 late final SharedPreferences appPrefs;
 var myStepsNotifier = ValueNotifier('Error');
+var stepsGoal = "5000";
 //Use debugPrint() to print stuff
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,7 +70,7 @@ class _MainPageState extends State<MainPage> {
     const Homepage(title: "Home"),
     const Leaderboard(title: "Leaderboard"),
     const Chat(title: "Chat"),
-    const Settings(title: "Settings"),
+    const Profile(title: "Profile"),
   ];
   late Stream<StepCount> stepCountStream;
 
@@ -136,8 +138,8 @@ class _MainPageState extends State<MainPage> {
                   label: 'Chat',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Settings',
+                  icon: Icon(Icons.person),
+                  label: 'Profile',
                 ),
               ],
             ),
@@ -193,42 +195,5 @@ class _MainPageState extends State<MainPage> {
         }
       },
     );
-
-    //Old ui stuff
-    /*return Scaffold(
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              showUnselectedLabels: false,
-              selectedItemColor: Colors.teal,
-              unselectedItemColor: Colors.grey,
-              currentIndex: currentIndex,
-              onTap: (newIndex) => pageController.jumpToPage(newIndex),
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.bar_chart),
-                  label: 'Leaderboard',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.chat),
-                  label: 'Chat',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Settings',
-                ),
-              ],
-            ),
-            body: PageView(
-              controller: pageController,
-              onPageChanged: (newIndex) =>
-                  setState(() => currentIndex = newIndex),
-              children: screensList,
-            ),
-          );
-     */
   }
 }

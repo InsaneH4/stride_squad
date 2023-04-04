@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/main.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, required this.title});
@@ -10,8 +11,11 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final goalController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    goalController.text = stepsGoal;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -123,6 +127,32 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0, left: 18.0),
+                child: Text(
+                  "Steps goal: ",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0, left: 18.0),
+                child: TextField(
+                  controller: goalController,
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(),
+                    labelText: 'Steps',
+                  ),
+                  onEditingComplete: () {
+                    setState(() {
+                      stepsGoal = goalController.text;
+                    });
+                  },
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
