@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "637251115626",
+    "firebase_url": "https://stride-squad-default-rtdb.firebaseio.com",
     "project_id": "stride-squad",
     "storage_bucket": "stride-squad.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "637251115626-9cgkohuvbo6dvpltidcit03j5go6bopv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "637251115626-kki7nefme53uvqb977eme9htsgh4h9u5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.strideSquad"
+              }
             }
           ]
         }

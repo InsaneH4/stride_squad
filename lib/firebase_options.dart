@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:637251115626:android:f9fab1ab7572bc7e200813',
     messagingSenderId: '637251115626',
     projectId: 'stride-squad',
+    databaseURL: 'https://stride-squad-default-rtdb.firebaseio.com',
     storageBucket: 'stride-squad.appspot.com',
   );
 
@@ -62,9 +63,9 @@ class DefaultFirebaseOptions {
     appId: '1:637251115626:ios:01b2859dcfa8d423200813',
     messagingSenderId: '637251115626',
     projectId: 'stride-squad',
+    databaseURL: 'https://stride-squad-default-rtdb.firebaseio.com',
     storageBucket: 'stride-squad.appspot.com',
-    iosClientId:
-        '637251115626-kki7nefme53uvqb977eme9htsgh4h9u5.apps.googleusercontent.com',
+    iosClientId: '637251115626-kki7nefme53uvqb977eme9htsgh4h9u5.apps.googleusercontent.com',
     iosBundleId: 'com.example.strideSquad',
   );
 }

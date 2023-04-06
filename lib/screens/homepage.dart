@@ -52,7 +52,7 @@ class _HomepageState extends State<Homepage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ValueListenableBuilder(
-                valueListenable: myStepsNotifier,
+                valueListenable: stepsNotifier,
                 builder: (context, value, child) => Text(
                   'You: $value',
                   style: const TextStyle(
@@ -77,7 +77,7 @@ class _HomepageState extends State<Homepage> {
             child: Stack(
               children: [
                 ValueListenableBuilder(
-                  valueListenable: myStepsNotifier,
+                  valueListenable: stepsNotifier,
                   builder: (context, value, child) => Ring(
                     percent: (value / stepsGoal) * 100,
                     color: RingColorScheme(ringColor: Colors.teal),

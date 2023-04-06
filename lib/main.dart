@@ -1,26 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+//firebase imports
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'firebase_options.dart';
+
+import 'my_objects.dart';
+import 'theme_conf.dart';
 import 'screens/homepage.dart';
 import 'screens/chat.dart';
 import 'screens/leaderboard.dart';
 import 'screens/profile.dart';
-import 'theme_conf.dart';
-import 'firebase_options.dart';
 
+var database = FirebaseDatabase.instance;
 late final SharedPreferences appPrefs;
-final myStepsNotifier = ValueNotifier(-1);
+final stepsNotifier = ValueNotifier(-1);
 var stepsGoal = 5000;
+
+//User object
+var testUser = User(
+  username: '@StepsGod69',
+  firstName: "Joe",
+  lastName: "Walker",
+  joinDate: DateFormat('M/d/yy').format(DateTime.now()),
+  steps: stepsNotifier.value,
+  stepsGoal: 5000,
+);
+
 //Use debugPrint() to print stuff
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  //initialize database
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //gets step count from database
+  final event = await database.ref('steps').once();
+  event.snapshot.value == null
+      ? stepsNotifier.value = 0
+      : stepsNotifier.value = event.snapshot.value as int;
   appPrefs = await SharedPreferences.getInstance();
   final themeController = ThemeController(appPrefs);
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
     MyApp(
       themeController: themeController,
@@ -73,15 +98,17 @@ class _MainPageState extends State<MainPage> {
   ];
   late Stream<StepCount> stepCountStream;
 
-  void onStepCount(StepCount event) {
-    myStepsNotifier.value = event.steps;
-    debugPrint("Steps: ${myStepsNotifier.value.toString()}");
+  Future<void> onStepCount(StepCount event) async {
+    stepsNotifier.value = event.steps;
+    await database.ref('steps').set(stepsNotifier.value);
+    debugPrint("Steps: ${stepsNotifier.value.toString()}");
+    debugPrint("User's steps: ${testUser.steps}");
   }
 
   void onStepCountError(error) {
     debugPrint('onStepCountError: $error');
     setState(() {
-      myStepsNotifier.value = -1;
+      stepsNotifier.value = -1;
     });
   }
 

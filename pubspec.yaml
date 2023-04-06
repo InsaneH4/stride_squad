@@ -41,10 +41,11 @@ dependencies:
   pedometer: ^3.0.0
   permission_handler: ^10.2.0
   firebase: ^9.0.3
-  firebase_core: ^2.8.0
+  firebase_core: ^2.9.0
   animate_gradient: ^0.0.2
   restart_app: ^1.1.2
   intl: ^0.18.0
+  firebase_database: ^10.1.0
 
 dev_dependencies:
   flutter_test:
