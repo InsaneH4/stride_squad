@@ -75,7 +75,7 @@ class _MainPageState extends State<MainPage> {
 
   void onStepCount(StepCount event) {
     myStepsNotifier.value = event.steps;
-    debugPrint(myStepsNotifier.value.toString());
+    debugPrint("Steps: ${myStepsNotifier.value.toString()}");
   }
 
   void onStepCountError(error) {

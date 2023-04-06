@@ -204,11 +204,11 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             Text(
-              'First name',
-              style: Theme.of(context).textTheme.titleLarge,
+              '@StepsGod69',
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             Text(
-              'Last Name',
+              'Joe Walker',
               style: Theme.of(context).textTheme.titleLarge,
             ),
             Text(
