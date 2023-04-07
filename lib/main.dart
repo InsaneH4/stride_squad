@@ -157,15 +157,15 @@ class _MainPageState extends State<MainPage> {
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.leaderboard_outlined),
+                  icon: Icon(Icons.leaderboard_rounded),
                   label: 'Leaderboard',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.chat_bubble_outline_rounded),
-                  label: 'Chat',
+                  icon: Icon(Icons.people_alt),
+                  label: 'Locker Room',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline_rounded),
+                  icon: Icon(Icons.person_rounded),
                   label: 'Profile',
                 ),
               ],

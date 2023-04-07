@@ -81,14 +81,14 @@ class _HomepageState extends State<Homepage> {
                   builder: (context, value, child) => Ring(
                     percent: (value / stepsGoal) * 100,
                     color: RingColorScheme(ringColor: Colors.teal),
-                    radius: 150,
+                    radius: 100,
                     width: 20,
                   ),
                 ),
                 Ring(
                   percent: 70,
                   color: RingColorScheme(ringColor: Colors.blue),
-                  radius: 100,
+                  radius: 150,
                   width: 20,
                 ),
               ],
