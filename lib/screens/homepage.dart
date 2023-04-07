@@ -73,13 +73,23 @@ class _HomepageState extends State<Homepage> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(150),
+            padding: const EdgeInsets.all(160),
             child: Stack(
               children: [
+                // Ring(
+                //  percent: 100,
+                //  color: RingColorScheme(
+                //     ringColor: Color.fromARGB(255, 126, 237, 130)),
+                // radius: 20,
+                //width: 40),
                 ValueListenableBuilder(
                   valueListenable: stepsNotifier,
                   builder: (context, value, child) => Ring(
                     percent: (value / stepsGoal) * 100,
+                    // if (percent = 100)
+                    // {
+                    //  colo
+                    //}
                     color: RingColorScheme(ringColor: Colors.teal),
                     radius: 100,
                     width: 20,
