@@ -146,25 +146,26 @@ class _MainPageState extends State<MainPage> {
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               showUnselectedLabels: false,
+              iconSize: 27,
               selectedItemColor: Colors.teal,
               unselectedItemColor: Colors.grey,
               currentIndex: currentIndex,
               onTap: (newIndex) => pageController.jumpToPage(newIndex),
               items: const [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
+                  icon: Icon(Icons.circle_outlined),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.bar_chart),
+                  icon: Icon(Icons.leaderboard_outlined),
                   label: 'Leaderboard',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.chat),
+                  icon: Icon(Icons.chat_bubble_outline_rounded),
                   label: 'Chat',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.person_outline_rounded),
                   label: 'Profile',
                 ),
               ],
