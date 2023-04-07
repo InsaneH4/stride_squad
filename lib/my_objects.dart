@@ -1,9 +1,11 @@
+import 'dart:core';
+
 class User {
   String username;
   String joinDate;
   String firstName;
   String lastName;
-  int steps;
+  Map<String, int> steps;
   int stepsGoal;
 
   User({

@@ -40,7 +40,7 @@ class _LeaderboardState extends State<Leaderboard>
           Colors.green,
         ],
         child:
-        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Container(
             padding: const EdgeInsets.only(
                 left: 40.0, top: 30.0, right: 40.0, bottom: 4.0),
@@ -51,20 +51,18 @@ class _LeaderboardState extends State<Leaderboard>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(children: [
-                const CircleAvatar(
-                  backgroundImage:
-                  AssetImage("image_assets/Stock_LeaderBoard_image.png"),
-                  radius: 35,
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
-                    child: Text("Team 1",
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .titleSmall)),
-                /*Padding(
+              Column(
+                children: const [
+                  CircleAvatar(
+                    backgroundImage:
+                        AssetImage("image_assets/Stock_LeaderBoard_image.png"),
+                    radius: 35,
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
+                      child: Text("Team 1",
+                          style: TextStyle(fontSize: 20, color: Colors.white))),
+                  /*Padding(
                             padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                             child: Text(
                               "1",
@@ -72,21 +70,19 @@ class _LeaderboardState extends State<Leaderboard>
                                 )
                             ),
                             */
-              ]),
+                ],
+              ),
               Column(children: [
                 const CircleAvatar(
                   backgroundImage:
-                  AssetImage("image_assets/Stock_LeaderBoard_image.png"),
+                      AssetImage("image_assets/Stock_LeaderBoard_image.png"),
                   radius: 35,
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
                     child: Text(
                       "Team 2",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleSmall,
+                      style: Theme.of(context).textTheme.titleSmall,
                     )),
                 /*
                             Padding(
@@ -101,17 +97,14 @@ class _LeaderboardState extends State<Leaderboard>
               Column(children: [
                 const CircleAvatar(
                   backgroundImage:
-                  AssetImage("image_assets/Stock_LeaderBoard_image.png"),
+                      AssetImage("image_assets/Stock_LeaderBoard_image.png"),
                   radius: 35,
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
                     child: Text(
                       "Team 3",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleSmall,
+                      style: Theme.of(context).textTheme.titleSmall,
                     )),
                 /*Padding(
                               padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
@@ -131,49 +124,43 @@ class _LeaderboardState extends State<Leaderboard>
           // ),
           Expanded(
               child: ListView.builder(
-                padding: const EdgeInsets.only(top: 10),
-                itemCount: 17,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) =>
-                    SizedBox(
-                      height: 90,
-                      child: Card(
-                          color: Colors.white.withOpacity(0.55),
-                          child: ListTile(
-                            tileColor: Colors.white.withOpacity(0.0),
-                            //shape:Border.all(width: 0.5),
-                            trailing: Transform(
-                              transform: Matrix4.translationValues(-80, 11.0,
-                                  0.0),
-                              child: const Text(
-                                'RedDashers',
-                                style: TextStyle(
-                                    fontSize: 32, color: Colors.black),
-                              ),
-                            ),
-                            leading: Transform(
-                              transform: Matrix4.translationValues(2, 11.0,
-                                  0.0),
-                              child: Text(
-                                '${index + 4}',
-                                style:
-                                const TextStyle(
-                                    fontSize: 26, color: Colors.black),
-                              ),
-                            ),
-                            // onTap: showTeamDialog,
-                            title: Transform(
-                              transform: Matrix4.translationValues(-50, 12.0,
-                                  0.0),
-                              child: const CircleAvatar(
-                                radius: 22,
-                                backgroundImage: AssetImage(
-                                    "image_assets/Stock_LeaderBoard_image.png"),
-                              ),
-                            ),
-                          )),
+            padding: const EdgeInsets.only(top: 10),
+            itemCount: 17,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) => SizedBox(
+              height: 90,
+              child: Card(
+                  color: Colors.white.withOpacity(0.55),
+                  child: ListTile(
+                    tileColor: Colors.white.withOpacity(0.0),
+                    //shape:Border.all(width: 0.5),
+                    trailing: Transform(
+                      transform: Matrix4.translationValues(-80, 11.0, 0.0),
+                      child: const Text(
+                        'RedDashers',
+                        style: TextStyle(fontSize: 32, color: Colors.black),
+                      ),
                     ),
-              )),
+                    leading: Transform(
+                      transform: Matrix4.translationValues(2, 11.0, 0.0),
+                      child: Text(
+                        '${index + 4}',
+                        style:
+                            const TextStyle(fontSize: 26, color: Colors.black),
+                      ),
+                    ),
+                    // onTap: showTeamDialog,
+                    title: Transform(
+                      transform: Matrix4.translationValues(-50, 12.0, 0.0),
+                      child: const CircleAvatar(
+                        radius: 22,
+                        backgroundImage: AssetImage(
+                            "image_assets/Stock_LeaderBoard_image.png"),
+                      ),
+                    ),
+                  )),
+            ),
+          )),
         ]),
       ),
     ); //,

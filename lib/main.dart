@@ -20,6 +20,7 @@ import 'screens/profile.dart';
 
 var database = FirebaseDatabase.instance;
 late final SharedPreferences appPrefs;
+final themeController = ThemeController(appPrefs);
 final stepsNotifier = ValueNotifier(-1);
 var stepsGoal = 5000;
 
@@ -29,7 +30,9 @@ var testUser = User(
   firstName: "Joe",
   lastName: "Walker",
   joinDate: DateFormat('M/d/yy').format(DateTime.now()),
-  steps: stepsNotifier.value,
+  steps: {
+    DateFormat('M/d/yy').format(DateTime.now()): stepsNotifier.value,
+  },
   stepsGoal: 5000,
 );
 
