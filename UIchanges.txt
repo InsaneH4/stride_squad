@@ -1,4 +1,3 @@
-1. Outer ring on homepage should be team inner should be your
 2. theme setting should be in profile
 3. add a signout ElevatedButton
 4. keep color theme consistant.
