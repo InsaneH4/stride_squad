@@ -14,7 +14,7 @@ class Chat extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                'In progress...',
+                'Login',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],

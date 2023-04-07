@@ -190,11 +190,11 @@ class _ProfileState extends State<Profile> {
       // ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
-              width: 200,
-              height: 200,
+              width: 150,
+              height: 150,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
@@ -208,19 +208,11 @@ class _ProfileState extends State<Profile> {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             Text(
-              'Joe Walker',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            Text(
               'Member since ${DateFormat('M/d/yy').format(DateTime.now())}',
               style: Theme.of(context).textTheme.titleLarge,
             ),
             Text(
-              'Total steps: 9999999',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            Text(
-              'Daily steps goal:  ',
+              'Total steps: 2,654,327',
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ],
