@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "637251115626",
+    "firebase_url": "https://stride-squad-default-rtdb.firebaseio.com",
+    "project_id": "stride-squad",
+    "storage_bucket": "stride-squad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637251115626:android:f9fab1ab7572bc7e200813",
+        "android_client_info": {
+          "package_name": "com.example.stride_squad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637251115626-a9vp8d94oh8q9aakidilmj3actknbo0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnNUVAZPKcJytdsLvcnDDZgN1BLvq8muU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637251115626-9cgkohuvbo6dvpltidcit03j5go6bopv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "637251115626-kki7nefme53uvqb977eme9htsgh4h9u5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.strideSquad"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
