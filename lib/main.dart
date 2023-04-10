@@ -9,7 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 //firebase imports
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'firebase_options.dart';
+import 'package:stride_squad/screens/auth_page.dart';
+import 'package:stride_squad/screens/login.dart';
+import 'services/firebase_options.dart';
 
 import 'my_objects.dart';
 import 'theme_conf.dart';
@@ -18,11 +20,12 @@ import 'screens/chat.dart';
 import 'screens/leaderboard.dart';
 import 'screens/profile.dart';
 
+var stepsGoal = 10000;
+var signedIn = false;
 var database = FirebaseDatabase.instance;
 late final SharedPreferences appPrefs;
 final themeController = ThemeController(appPrefs);
 final stepsNotifier = ValueNotifier(-1);
-var stepsGoal = 5000;
 
 //User object
 var testUser = User(
@@ -33,7 +36,7 @@ var testUser = User(
   steps: {
     DateFormat('M/d/yy').format(DateTime.now()): stepsNotifier.value,
   },
-  stepsGoal: 5000,
+  stepsGoal: 10000,
 );
 
 //Use debugPrint() to print stuff
@@ -72,7 +75,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             title: 'Stride Squad',
             theme: buildCurrentTheme(themeController),
-            home: const MainPage(title: 'Home'),
+            home: const AuthPage(title: "Auth Check"),
           ),
         );
       },
@@ -156,7 +159,7 @@ class _MainPageState extends State<MainPage> {
               onTap: (newIndex) => pageController.jumpToPage(newIndex),
               items: const [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.circle_outlined),
+                  icon: Icon(Icons.directions_walk_rounded),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
@@ -164,8 +167,8 @@ class _MainPageState extends State<MainPage> {
                   label: 'Leaderboard',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.people_alt),
-                  label: 'Locker Room',
+                  icon: Icon(Icons.message_rounded),
+                  label: 'Chat',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person_rounded),
@@ -183,7 +186,9 @@ class _MainPageState extends State<MainPage> {
         } else if (!snapshot.hasData) {
           return const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Colors.teal,
+              ),
             ),
           );
         } else {

@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import '/main.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class AuthPage extends StatefulWidget {
+  final String title;
 
+  const AuthPage({super.key, required this.title});
+
+  @override
+  State<StatefulWidget> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

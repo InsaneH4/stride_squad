@@ -72,19 +72,20 @@ class _LeaderboardState extends State<Leaderboard>
                             */
                 ],
               ),
-              Column(children: [
-                const CircleAvatar(
-                  backgroundImage:
-                      AssetImage("image_assets/Stock_LeaderBoard_image.png"),
-                  radius: 35,
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
-                    child: Text(
-                      "Team 2",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    )),
-                /*
+              Column(
+                children: const [
+                  CircleAvatar(
+                    backgroundImage:
+                        AssetImage("image_assets/Stock_LeaderBoard_image.png"),
+                    radius: 35,
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
+                      child: Text(
+                        "Team 2",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      )),
+                  /*
                             Padding(
                             padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                             child: Text(
@@ -93,19 +94,19 @@ class _LeaderboardState extends State<Leaderboard>
                                 )
                             ),
                             */
-              ]),
-              Column(children: [
-                const CircleAvatar(
+                ],
+              ),
+              Column(children: const [
+                CircleAvatar(
                   backgroundImage:
                       AssetImage("image_assets/Stock_LeaderBoard_image.png"),
                   radius: 35,
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 0.1),
-                    child: Text(
-                      "Team 3",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    )),
+                  padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
+                  child: Text("Team 3",
+                      style: TextStyle(fontSize: 20, color: Colors.white)),
+                ),
                 /*Padding(
                               padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                               child: Text(
