@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:stride_squad/screens/auth_page.dart';
+import 'package:stride_squad/services/auth_service.dart';
 import '/main.dart';
+import 'login.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, required this.title});
@@ -214,6 +217,26 @@ class _ProfileState extends State<Profile> {
             Text(
               'Total steps: 2,654,327',
               style: Theme.of(context).textTheme.titleLarge,
+            ),
+            TextButton(
+              child: const Text(
+                'Sign Out',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 28,
+                ),
+              ),
+              onPressed: () {
+                AuthService().signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AuthPage(
+                      title: "Auth",
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
