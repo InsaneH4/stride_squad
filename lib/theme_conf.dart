@@ -34,9 +34,7 @@ final lightTheme = ThemeData(
       color: Colors.black,
     ),
   ),
-  listTileTheme: const ListTileThemeData(
-    tileColor: Colors.white
-    ),
+  listTileTheme: const ListTileThemeData(tileColor: Colors.white),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: Colors.teal,
     foregroundColor: Colors.white,
@@ -61,6 +59,19 @@ final lightTheme = ThemeData(
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Colors.white,
+  ),
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: Colors.blueAccent,
+    selectionColor: Color.fromARGB(75, 68, 137, 255),
+    selectionHandleColor: Colors.teal,
+  ),
+  inputDecorationTheme: const InputDecorationTheme(
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.teal),
+    ),
+    labelStyle: TextStyle(
+      color: Colors.black,
+    ),
   ),
 );
 
@@ -90,12 +101,12 @@ final darkTheme = ThemeData(
     ),
     titleMedium: TextStyle(
       fontSize: 24,
-      color: Colors.white,  
+      color: Colors.white,
     ),
     titleSmall: TextStyle(
       fontSize: 20,
       color: Colors.white,
-    ),
+    ),    
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: Colors.teal,
@@ -124,6 +135,19 @@ final darkTheme = ThemeData(
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Colors.black,
+  ),
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: Colors.blueAccent,
+    selectionColor: Color.fromARGB(75, 68, 137, 255),
+    selectionHandleColor: Colors.teal,
+  ),
+  inputDecorationTheme: const InputDecorationTheme(
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.teal),
+    ),
+    labelStyle: TextStyle(
+      color: Colors.white,
+    ),
   ),
 );
 
