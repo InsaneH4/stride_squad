@@ -241,7 +241,7 @@ class _ProfileState extends State<Profile> {
                       stepsGoal = int.parse(value);
                     });
 
-                    debugPrint('Steps Goal: $stepsGoal');
+                    //     debugPrint('Steps Goal: $stepsGoal');
                   }),
             ),
             TextButton(
