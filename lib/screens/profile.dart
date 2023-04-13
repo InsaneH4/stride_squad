@@ -227,14 +227,6 @@ class _ProfileState extends State<Profile> {
               ),
               onPressed: () {
                 AuthService().signOut();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AuthPage(
-                      title: "Auth",
-                    ),
-                  ),
-                );
               },
             ),
           ],
