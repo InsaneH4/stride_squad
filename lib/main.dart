@@ -9,12 +9,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 //firebase imports
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:stride_squad/screens/auth_page.dart';
-import 'package:stride_squad/screens/login.dart';
-import 'services/firebase_options.dart';
+import 'helpers/firebase_options.dart';
 
-import 'my_objects.dart';
-import 'theme_conf.dart';
+import 'helpers/auth_check.dart';
+import 'helpers/my_objects.dart';
+import 'helpers/theme_conf.dart';
 import 'screens/homepage.dart';
 import 'screens/chat.dart';
 import 'screens/leaderboard.dart';
@@ -93,7 +92,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  // Add this eventually https://pub.dev/packages/pedometer
   var currentIndex = 0;
   var pageController = PageController(initialPage: 0);
   final screensList = [

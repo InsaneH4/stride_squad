@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:stride_squad/screens/homepage.dart';
-import '/services/auth_service.dart';
+import '../helpers/auth_service.dart';
 //import '/main.dart';
 
 class LoginPage extends StatefulWidget {
@@ -19,59 +19,128 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50, bottom: 20),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 20),
             child: Text(
-              "Welcome to Stride Squad!",
-              style: Theme.of(context).textTheme.headlineMedium,
+              "Welcome to\nStride Squad!",
+              style: TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
               textAlign: TextAlign.center,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 50),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 20),
             child: Text(
               "Sign in to get started",
-              style: Theme.of(context).textTheme.titleLarge,
+              style: TextStyle(fontSize: 28, color: Colors.black),
               textAlign: TextAlign.center,
             ),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 20, 8, 20),
             child: TextField(
-              style: isDark
-                  ? const TextStyle(color: Colors.white)
-                  : const TextStyle(color: Colors.black),
-              cursorColor: Colors.blueAccent,
+              style: const TextStyle(color: Colors.black),
               keyboardType: TextInputType.emailAddress,
               controller: emailController,
               decoration: const InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
                 border: OutlineInputBorder(),
-                labelText: 'Email',
+                labelText: 'Email Address',
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 50),
+            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
             child: TextField(
-              style: isDark
-                  ? const TextStyle(color: Colors.white)
-                  : const TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               obscureText: true,
-              cursorColor: Colors.blueAccent,
               controller: passwordController,
               decoration: const InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
                 border: OutlineInputBorder(),
                 labelText: 'Password',
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 40, 8, 20),
+            child: SizedBox(
+              width: 350,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey[200],
+                ),
+                // button: Button.Email,
+                // text: "Sign in with Email",
+                onPressed: () {
+                  if (emailController.text.isEmpty ||
+                      passwordController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Please enter an email and password"),
+                      ),
+                    );
+                    return;
+                  }
+                  AuthService().signInEmail(
+                    emailController.text,
+                    passwordController.text,
+                  );
+                  if (FirebaseAuth.instance.currentUser == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Invalid email or password"),
+                      ),
+                    );
+                    return;
+                  }
+                },
+                child: Row(children: const [
+                  Icon(
+                    size: 40,
+                    Icons.email_outlined,
+                    color: Colors.teal,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      "Sign In With Email",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 26,
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          ),
           SizedBox(
-            width: 300,
-            height: 75,
+            width: 350,
+            height: 50,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+              ),
+              // button: Button.GoogleBlue,
+              // text: "Sign in with Google",
               onPressed: () {
                 //Old onPressed for testing
                 // setState(() {
@@ -86,14 +155,36 @@ class _LoginPageState extends State<LoginPage> {
                 // });
 
                 //New onPressed to sign in with google
-                AuthService().signInWithGoogle();
+                AuthService().signInGoogle();
               },
+              child: Row(children: const [
+                Image(
+                  image: AssetImage("assets/goog.png"),
+                  height: 40,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Text(
+                    "Sign In With Google",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 26,
+                    ),
+                  ),
+                ),
+              ]),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: TextButton(
+              onPressed: () {},
               child: const Text(
-                "Sign In With Google",
+                "Create an account",
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),
+                  color: Colors.teal,
+                  fontSize: 20,
+                ),
               ),
             ),
           ),

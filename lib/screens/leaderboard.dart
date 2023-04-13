@@ -55,7 +55,7 @@ class _LeaderboardState extends State<Leaderboard>
                 children: const [
                   CircleAvatar(
                     backgroundImage:
-                        AssetImage("image_assets/Stock_LeaderBoard_image.png"),
+                        AssetImage("assets/Stock_LeaderBoard_image.png"),
                     radius: 35,
                   ),
                   Padding(
@@ -76,7 +76,7 @@ class _LeaderboardState extends State<Leaderboard>
                 children: const [
                   CircleAvatar(
                     backgroundImage:
-                        AssetImage("image_assets/Stock_LeaderBoard_image.png"),
+                        AssetImage("assets/Stock_LeaderBoard_image.png"),
                     radius: 35,
                   ),
                   Padding(
@@ -99,7 +99,7 @@ class _LeaderboardState extends State<Leaderboard>
               Column(children: const [
                 CircleAvatar(
                   backgroundImage:
-                      AssetImage("image_assets/Stock_LeaderBoard_image.png"),
+                      AssetImage("assets/Stock_LeaderBoard_image.png"),
                   radius: 35,
                 ),
                 Padding(
@@ -155,8 +155,8 @@ class _LeaderboardState extends State<Leaderboard>
                       transform: Matrix4.translationValues(-50, 12.0, 0.0),
                       child: const CircleAvatar(
                         radius: 22,
-                        backgroundImage: AssetImage(
-                            "image_assets/Stock_LeaderBoard_image.png"),
+                        backgroundImage:
+                            AssetImage("assets/Stock_LeaderBoard_image.png"),
                       ),
                     ),
                   )),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:stride_squad/screens/auth_page.dart';
-import 'package:stride_squad/services/auth_service.dart';
+import '/helpers/auth_check.dart';
+import '/helpers/auth_service.dart';
 import '/main.dart';
-import 'login.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, required this.title});
@@ -201,7 +200,7 @@ class _ProfileState extends State<Profile> {
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('image_assets/default_pfp.jpg'),
+                  image: AssetImage('assets/default_pfp.jpg'),
                   fit: BoxFit.fill,
                 ),
               ),
