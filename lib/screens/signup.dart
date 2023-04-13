@@ -13,6 +13,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  var confirmController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +43,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 50, 8, 30),
+              padding: const EdgeInsets.fromLTRB(8, 50, 8, 16),
               child: TextField(
                 style: const TextStyle(color: Colors.black),
                 keyboardType: TextInputType.emailAddress,
@@ -60,7 +61,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
               child: TextField(
                 style: const TextStyle(color: Colors.black),
                 obscureText: true,
@@ -74,6 +75,24 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   border: OutlineInputBorder(),
                   labelText: 'Password',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              child: TextField(
+                style: const TextStyle(color: Colors.black),
+                obscureText: true,
+                controller: confirmController,
+                decoration: const InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal),
+                  ),
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
+                  border: OutlineInputBorder(),
+                  labelText: 'Confirm Password',
                 ),
               ),
             ),
@@ -101,6 +120,14 @@ class _SignupPageState extends State<SignupPage> {
                         const SnackBar(
                           content:
                               Text('Password must be at least 6 characters'),
+                        ),
+                      );
+                      return;
+                    }
+                    if (confirmController.text != passwordController.text) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Passwords do not match'),
                         ),
                       );
                       return;
