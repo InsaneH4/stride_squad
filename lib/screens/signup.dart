@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:stride_squad/helpers/auth_check.dart';
 import 'package:stride_squad/helpers/auth_service.dart';
-import 'package:stride_squad/main.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key, required this.title});
