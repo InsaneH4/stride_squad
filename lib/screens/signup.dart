@@ -86,6 +86,9 @@ class _SignupPageState extends State<SignupPage> {
                 width: 200,
                 height: 50,
                 child: ElevatedButton(
+                  //TODO: Add password confirmation
+                  //TODO: Check that user with same email doesn't exist
+                  //TODO: Look for other errors before creating account
                   onPressed: () async {
                     if (emailController.text.isEmpty ||
                         passwordController.text.isEmpty) {
