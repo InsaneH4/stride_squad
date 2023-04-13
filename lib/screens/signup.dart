@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stride_squad/helpers/auth_service.dart';
+import '/helpers/auth_service.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key, required this.title});
