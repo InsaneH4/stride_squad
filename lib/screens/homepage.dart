@@ -48,16 +48,16 @@ class _HomepageState extends State<Homepage> {
           //   style: Theme.of(context).textTheme.headlineSmall,
           //   textAlign: TextAlign.center,
           // ),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ValueListenableBuilder(
                 valueListenable: stepsNotifier,
                 builder: (context, value, child) => Text(
-                  'You: $value',
+                  'You: $value/$stepsGoal',
                   style: const TextStyle(
                     color: Colors.teal,
-                    fontSize: 28,
+                    fontSize: 25,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -66,7 +66,7 @@ class _HomepageState extends State<Homepage> {
                 'Team: $teamSteps',
                 style: const TextStyle(
                   color: Colors.blue,
-                  fontSize: 28,
+                  fontSize: 25,
                 ),
                 textAlign: TextAlign.center,
               ),

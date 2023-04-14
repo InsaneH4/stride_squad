@@ -192,6 +192,7 @@ class _ProfileState extends State<Profile> {
       // ),
       body: Center(
         child: Column(
+          //  mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
@@ -217,11 +218,37 @@ class _ProfileState extends State<Profile> {
               'Total steps: 2,654,327',
               style: Theme.of(context).textTheme.titleLarge,
             ),
+            SizedBox(
+              width: 200,
+              height: 50,
+              child: TextField(
+                  style: const TextStyle(color: Colors.black),
+                  controller: goalController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.teal),
+                    ),
+                    labelStyle: TextStyle(
+                      color: Colors.black,
+                    ),
+                    border: OutlineInputBorder(),
+                    labelText: 'Enter Steps Goal',
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                  onSubmitted: (value) {
+                    setState(() {
+                      stepsGoal = int.parse(value);
+                    });
+
+                    //     debugPrint('Steps Goal: $stepsGoal');
+                  }),
+            ),
             TextButton(
               child: const Text(
                 'Sign Out',
                 style: TextStyle(
-                  color: Colors.red,
+                  color: Colors.teal,
                   fontSize: 28,
                 ),
               ),
