@@ -31,3 +31,19 @@ class Team {
     required this.teamGoal,
   });
 }
+
+class StepEvent {
+  int stepCount;
+  String date;
+
+  StepEvent({
+    required this.stepCount,
+    required this.date,
+  });
+
+//Converts object to JSON syntax for firebase
+  Map<String, dynamic> toJson() => {
+        'stepCount': stepCount,
+        'date': date.toString(),
+      };
+}

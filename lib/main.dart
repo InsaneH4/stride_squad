@@ -24,7 +24,8 @@ var signedIn = false;
 var database = FirebaseDatabase.instance;
 late final SharedPreferences appPrefs;
 final themeController = ThemeController(appPrefs);
-final stepsNotifier = ValueNotifier(-1);
+final stepsNotifier = ValueNotifier(0);
+final stepsList = <StepEvent>[];
 
 //User object
 var testUser = User(
@@ -45,10 +46,6 @@ void main() async {
   //initialize database
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   //gets step count from database
-  final event = await database.ref('steps').once();
-  event.snapshot.value == null
-      ? stepsNotifier.value = 0
-      : stepsNotifier.value = event.snapshot.value as int;
   appPrefs = await SharedPreferences.getInstance();
   final themeController = ThemeController(appPrefs);
   runApp(
@@ -103,10 +100,19 @@ class _MainPageState extends State<MainPage> {
   late Stream<StepCount> stepCountStream;
 
   Future<void> onStepCount(StepCount event) async {
+    var thisStep = StepEvent(
+      stepCount: event.steps,
+      date: DateFormat("M/dd/y").format(event.timeStamp),
+    );
+    stepsList.add(thisStep);
+    debugPrint("Steps: ${thisStep.stepCount} - At: ${thisStep.date}");
     stepsNotifier.value = event.steps;
-    await database.ref('steps').set(stepsNotifier.value);
-    debugPrint("Steps: ${stepsNotifier.value.toString()}");
-    debugPrint("User's steps: ${testUser.steps}");
+    debugPrint("\nSteps in list:");
+    for (var step in stepsList) {
+      debugPrint("Steps: ${step.stepCount} - At: ${step.date}}");
+      await database.ref('Steps List').push().set(step.toJson());
+    }
+    // await database.ref('steps').set(stepsList);
   }
 
   void onStepCountError(error) {
