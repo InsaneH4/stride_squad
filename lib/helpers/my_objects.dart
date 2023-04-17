@@ -1,26 +1,39 @@
 import 'dart:core';
 
-class User {
+class SsUser {
+  String email;
   String username;
+  String password;
   String joinDate;
-  String firstName;
-  String lastName;
-  Map<String, int> steps;
+  String name;
+  Map<String, int> stepsMap;
   int stepsGoal;
 
-  User({
+  SsUser({
+    required this.email,
     required this.username,
+    required this.password,
     required this.joinDate,
-    required this.firstName,
-    required this.lastName,
-    required this.steps,
+    required this.name,
+    required this.stepsMap,
     required this.stepsGoal,
   });
+
+  Map<String, dynamic> toJson() => {
+        'email': email,
+        'username': username,
+        'password': password,
+        'joinDate': joinDate,
+        'name': name,
+        'stepDates': stepsMap.keys.toList(),
+        'stepCounts': stepsMap.values.toList(),
+        'stepsGoal': stepsGoal,
+      };
 }
 
 class Team {
   String teamName;
-  List<User> teamMembers;
+  List<SsUser> teamMembers;
   int teamSteps;
   int teamGoal;
 

@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import '../main.dart';
 import '/helpers/auth_service.dart';
+import '/helpers/my_objects.dart';
+import 'homepage.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key, required this.title});
@@ -14,48 +19,45 @@ class _SignupPageState extends State<SignupPage> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmController = TextEditingController();
+  var usernameController = TextEditingController();
+  var nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(8, 150, 8, 0),
-              child: Text(
-                'Welcome to Stride Squad!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 150, 8, 0),
+              child: Text('Welcome to Stride Squad!',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineMedium),
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Enter your email and create a password to get started',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 28, color: Colors.black),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 50, 8, 16),
               child: TextField(
-                style: const TextStyle(color: Colors.black),
+                style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 keyboardType: TextInputType.emailAddress,
                 controller: emailController,
-                decoration: const InputDecoration(
-                  focusedBorder: OutlineInputBorder(
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: isDark ? Colors.white : Colors.black,
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   labelText: 'Email Address',
                 ),
               ),
@@ -63,17 +65,51 @@ class _SignupPageState extends State<SignupPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
               child: TextField(
-                style: const TextStyle(color: Colors.black),
-                obscureText: true,
-                controller: passwordController,
-                decoration: const InputDecoration(
-                  focusedBorder: OutlineInputBorder(
+                style: TextStyle(color: isDark ? Colors.white : Colors.black),
+                controller: nameController,
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: isDark ? Colors.white : Colors.black,
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
+                  labelText: 'Full Name',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+              child: TextField(
+                style: TextStyle(color: isDark ? Colors.white : Colors.black),
+                controller: usernameController,
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal),
+                  ),
+                  labelStyle: TextStyle(
+                    color: isDark ? Colors.white : Colors.black,
+                  ),
+                  border: const OutlineInputBorder(),
+                  labelText: 'Display Name',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+              child: TextField(
+                style: TextStyle(color: isDark ? Colors.white : Colors.black),
+                obscureText: true,
+                controller: passwordController,
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal),
+                  ),
+                  labelStyle: TextStyle(
+                    color: isDark ? Colors.white : Colors.black,
+                  ),
+                  border: const OutlineInputBorder(),
                   labelText: 'Password',
                 ),
               ),
@@ -81,17 +117,17 @@ class _SignupPageState extends State<SignupPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
               child: TextField(
-                style: const TextStyle(color: Colors.black),
+                style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 obscureText: true,
                 controller: confirmController,
-                decoration: const InputDecoration(
-                  focusedBorder: OutlineInputBorder(
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: isDark ? Colors.white : Colors.black,
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   labelText: 'Confirm Password',
                 ),
               ),
@@ -102,24 +138,17 @@ class _SignupPageState extends State<SignupPage> {
                 width: 200,
                 height: 50,
                 child: ElevatedButton(
-                  //TODO: Add password confirmation
-                  //TODO: Check that user with same email doesn't exist
-                  //TODO: Look for other errors before creating account
+                  child: const Text("Sign Up", style: TextStyle(fontSize: 28)),
                   onPressed: () async {
+                    //Checks for errors before signing up
+
                     if (emailController.text.isEmpty ||
-                        passwordController.text.isEmpty) {
+                        passwordController.text.isEmpty ||
+                        confirmController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Please enter an email and password'),
-                        ),
-                      );
-                      return;
-                    }
-                    if (passwordController.text.length < 6) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content:
-                              Text('Password must be at least 6 characters'),
+                          backgroundColor: Colors.redAccent,
                         ),
                       );
                       return;
@@ -128,16 +157,65 @@ class _SignupPageState extends State<SignupPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Passwords do not match'),
+                          backgroundColor: Colors.redAccent,
                         ),
                       );
                       return;
                     }
+
                     //promise that goes to main app screen when resolved
-                    await AuthService()
-                        .signUp(emailController.text, passwordController.text)
-                        .then((value) => Navigator.pop(context));
+                    var errMsg = "Success";
+                    try {
+                      var newUser = SsUser(
+                        email: emailController.text,
+                        username: usernameController.text,
+                        password: passwordController.text,
+                        joinDate: DateFormat('M/d/yy').format(DateTime.now()),
+                        name: nameController.text,
+                        stepsMap: {
+                          DateFormat('M/d/yy').format(DateTime.now()):
+                              stepsNotifier.value,
+                        },
+                        stepsGoal: 10000,
+                      );
+                      await AuthService()
+                          .signUp(emailController.text, passwordController.text)
+                          .then(
+                        (value) {
+                          database
+                              .ref(
+                                  "/Users/${FirebaseAuth.instance.currentUser!.uid}")
+                              .set(newUser.toJson());
+                          Navigator.pop(context);
+                        },
+                      );
+                    } on FirebaseAuthException catch (error) {
+                      debugPrint(error.code.toString());
+                      switch (error.code) {
+                        case "invalid-email":
+                          errMsg =
+                              "Your email address appears to be malformed.";
+                          break;
+                        case "weak-password":
+                          errMsg = "Your password is too weak.";
+                          break;
+                        case "too-many-requests":
+                          errMsg = "Too many requests. Try again later.";
+                          break;
+                        case "email-already-in-use":
+                          errMsg = "Email already in use.";
+                          break;
+                        default:
+                          errMsg = "An undefined Error happened.";
+                      }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(errMsg),
+                          backgroundColor: Colors.redAccent,
+                        ),
+                      );
+                    }
                   },
-                  child: const Text("Sign Up", style: TextStyle(fontSize: 28)),
                 ),
               ),
             ),

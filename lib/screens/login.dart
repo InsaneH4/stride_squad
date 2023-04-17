@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../helpers/auth_service.dart';
+import 'homepage.dart';
 import 'signup.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,46 +19,42 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 150, bottom: 20),
+            Padding(
+              padding: const EdgeInsets.only(top: 150, bottom: 20),
               child: Text(
                 "Welcome back!",
-                style: TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 20),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
               child: Text(
                 "It's striding time",
-                style: TextStyle(fontSize: 28, color: Colors.black),
+                style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 20, 8, 20),
               child: TextField(
-                style: const TextStyle(color: Colors.black),
+                style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 keyboardType: TextInputType.emailAddress,
                 controller: emailController,
-                decoration: const InputDecoration(
-                  focusedBorder: OutlineInputBorder(
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: isDark ? Colors.white : Colors.black,
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   labelText: 'Email Address',
                 ),
               ),
@@ -68,14 +65,14 @@ class _LoginPageState extends State<LoginPage> {
                 style: const TextStyle(color: Colors.black),
                 obscureText: true,
                 controller: passwordController,
-                decoration: const InputDecoration(
-                  focusedBorder: OutlineInputBorder(
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: isDark ? Colors.white : Colors.black,
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   labelText: 'Password',
                 ),
               ),
@@ -87,7 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[200],
+                    backgroundColor:
+                        isDark ? Colors.grey[900] : Colors.grey[200],
                   ),
                   onPressed: () {
                     if (emailController.text.isEmpty ||
@@ -104,18 +102,18 @@ class _LoginPageState extends State<LoginPage> {
                       passwordController.text,
                     );
                   },
-                  child: Row(children: const [
-                    Icon(
+                  child: Row(children: [
+                    const Icon(
                       size: 40,
                       Icons.email_outlined,
                       color: Colors.teal,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 20),
                       child: Text(
                         "Sign In With Email",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: isDark ? Colors.white : Colors.black,
                           fontSize: 26,
                         ),
                       ),
@@ -129,37 +127,20 @@ class _LoginPageState extends State<LoginPage> {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[200],
+                  backgroundColor: isDark ? Colors.grey[900] : Colors.grey[200],
                 ),
-                // button: Button.GoogleBlue,
-                // text: "Sign in with Google",
-                onPressed: () {
-                  //Old onPressed for testing
-                  // setState(() {
-                  //   signedIn = true;
-                  //   Navigator.pushReplacement(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) =>
-                  //           const MainPage(title: "Stride Squad"),
-                  //     ),
-                  //   );
-                  // });
-
-                  //New onPressed to sign in with google
-                  AuthService().signInGoogle();
-                },
-                child: Row(children: const [
-                  Image(
+                onPressed: () => AuthService().signInGoogle(context),
+                child: Row(children: [
+                  const Image(
                     image: AssetImage("assets/goog.png"),
                     height: 40,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 20),
                     child: Text(
                       "Sign In With Google",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: isDark ? Colors.white : Colors.black,
                         fontSize: 26,
                       ),
                     ),

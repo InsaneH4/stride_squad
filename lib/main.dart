@@ -28,12 +28,13 @@ final stepsNotifier = ValueNotifier(0);
 final stepsList = <StepEvent>[];
 
 //User object
-var testUser = User(
+var testUser = SsUser(
+  email: 'yourmom@test.com',
+  password: 'hackme',
   username: '@StepsGod69',
-  firstName: "Joe",
-  lastName: "Walker",
+  name: "Joe Walker",
   joinDate: DateFormat('M/d/yy').format(DateTime.now()),
-  steps: {
+  stepsMap: {
     DateFormat('M/d/yy').format(DateTime.now()): stepsNotifier.value,
   },
   stepsGoal: 10000,

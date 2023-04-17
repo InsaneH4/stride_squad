@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+//Change color of icons at top of screen based on theme
+
 final lightTheme = ThemeData(
   useMaterial3: true,
   scaffoldBackgroundColor: Colors.white,

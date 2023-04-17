@@ -1,5 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
+import '../main.dart';
+import 'my_objects.dart';
 
 class AuthService {
   //Lambda functions are cool :)
@@ -13,14 +17,41 @@ class AuthService {
 
   Future<void> signOut() async => await FirebaseAuth.instance.signOut();
 
-  Future<void> signInGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
-    final AuthCredential credential = GoogleAuthProvider.credential(
+  Future<void> signInGoogle(context) async {
+    var googleUser = await GoogleSignIn().signIn();
+    var googleAuth = await googleUser!.authentication;
+    var credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
+    var authResult =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    var user = authResult.user;
+    if (authResult.additionalUserInfo!.isNewUser) {
+      if (user != null) {
+        var newUser = SsUser(
+          email: user.email!,
+          username: user.displayName!.replaceAll(" ", ""),
+          password: "no set password (is google account)",
+          joinDate: DateFormat('M/d/yy').format(DateTime.now()),
+          name: user.displayName!,
+          stepsMap: {
+            DateFormat('M/d/yy').format(DateTime.now()): stepsNotifier.value,
+          },
+          stepsGoal: 10000,
+        );
+        await database
+            .ref("/Users/${FirebaseAuth.instance.currentUser!.uid}")
+            .set(newUser.toJson());
+        //do stuff
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Error signing in with Google'),
+          ),
+        );
+      }
+    }
     await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
