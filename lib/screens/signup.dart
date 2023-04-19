@@ -170,6 +170,7 @@ class _SignupPageState extends State<SignupPage> {
                       var newUser = SsUser(                        
                         username: usernameController.text,                        
                         joinDate: DateFormat('M/d/yy').format(DateTime.now()),
+                        uid: FirebaseAuth.instance.currentUser!.uid,
                         name: nameController.text,
                         stepsMap: {
                           DateFormat('M/d/yy').format(DateTime.now()):

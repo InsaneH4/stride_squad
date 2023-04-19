@@ -5,6 +5,7 @@ class SsUser {
   String username;
   String joinDate;
   String name;
+  String uid;
   int stepsGoal;
   Map<Object?, Object?> stepsMap;
 
@@ -12,6 +13,7 @@ class SsUser {
     required this.username,
     required this.joinDate,
     required this.name,
+    required this.uid,
     required this.stepsMap,
     required this.stepsGoal,
   });
@@ -22,6 +24,7 @@ class SsUser {
       'username': username,
       'joinDate': joinDate,
       'name': name,
+      'uid': uid,
       'stepsGoal': stepsGoal,
     };
   }
@@ -38,6 +41,7 @@ class SsUser {
       username: fbData['username'],
       joinDate: fbData['joinDate'],
       name: fbData['name'],
+      uid: fbData['uid'],
       stepsMap: fbData['steps'],
       stepsGoal: fbData['stepsGoal'],
     );

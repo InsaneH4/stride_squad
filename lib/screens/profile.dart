@@ -29,7 +29,7 @@ class _ProfileState extends State<Profile> {
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           //gets signed in user info from db, converts from json to dart object
-          final SsUser curUser = SsUser.fromJson(snapshot.data);
+          final curUser = SsUser.fromJson(snapshot.data);
           var totalSteps = 0;
           for (var element in curUser.stepsMap.values) {
             totalSteps += int.parse(element as String);
@@ -45,7 +45,7 @@ class _ProfileState extends State<Profile> {
                       builder: (context) =>
                           EditProfile(title: 'Edit Profile', curUser: curUser),
                     ),
-                  ),
+                  ).then((value) => setState(() {})),
                   icon: const Icon(Icons.edit),
                 ),
               ],

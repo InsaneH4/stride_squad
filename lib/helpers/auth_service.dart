@@ -31,6 +31,7 @@ class AuthService {
       var newUser = SsUser(
         username: user!.displayName!.replaceAll(" ", ""),
         joinDate: DateFormat('M/d/yy').format(DateTime.now()),
+        uid: FirebaseAuth.instance.currentUser!.uid,
         name: user.displayName!,
         stepsMap: {
           DateFormat('M-d-yy').format(DateTime.now()): stepsNotifier.value,
