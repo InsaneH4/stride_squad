@@ -35,7 +35,7 @@ var testUser = SsUser(
   name: "Joe Walker",
   joinDate: DateFormat('M/d/yy').format(DateTime.now()),
   stepsMap: {
-    DateFormat('M/d/yy').format(DateTime.now()): stepsNotifier.value,
+    DateFormat('M-d-yy').format(DateTime.now()): stepsNotifier.value,
   },
   stepsGoal: 10000,
 );
@@ -102,18 +102,13 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> onStepCount(StepCount event) async {
     var thisStep = StepEvent(
-      stepCount: event.steps,
-      date: DateFormat("M/dd/y").format(event.timeStamp),
+      stepCount: event.steps.toString(),
+      date: DateFormat("M-dd-y").format(event.timeStamp),
     );
     stepsList.add(thisStep);
-    debugPrint("Steps: ${thisStep.stepCount} - At: ${thisStep.date}");
-    stepsNotifier.value = event.steps.toString();
-    debugPrint("\nSteps in list:");
-    for (var step in stepsList) {
-      debugPrint("Steps: ${step.stepCount} - At: ${step.date}}");
-      await database.ref('Steps List').push().set(step.toJson());
-    }
-    // await database.ref('steps').set(stepsList);
+    debugPrint("Steps: ${thisStep.stepCount} - At: ${thisStep.date}");    
+    await database.ref('Steps').set(thisStep.toJson());
+    stepsNotifier.value = event.steps.toString();    
   }
 
   void onStepCountError(error) {
@@ -136,7 +131,7 @@ class _MainPageState extends State<MainPage> {
         //Checks if activity permission is granted
         if (snapshot.hasData && snapshot.data == true) {
           stepCountStream = Pedometer.stepCountStream;
-    stepCountStream.listen(onStepCount).onError(onStepCountError);
+          stepCountStream.listen(onStepCount).onError(onStepCountError);
           return Scaffold(
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,

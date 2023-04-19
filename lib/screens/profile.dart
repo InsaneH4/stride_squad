@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:numberpicker/numberpicker.dart';
 import 'package:stride_squad/helpers/my_objects.dart';
 import '/helpers/auth_service.dart';
 import '/main.dart';
+
+final myUID = FirebaseAuth.instance.currentUser!.uid;
 
 class Profile extends StatefulWidget {
   const Profile({super.key, required this.title});
@@ -17,7 +20,6 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final goalController = TextEditingController();
   final dateFormat = DateFormat('dd-MMMM-yyyy');
-  final myUID = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -103,36 +105,38 @@ class _ProfileState extends State<Profile> {
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
-                    SizedBox(
-                      width: 250,
-                      height: 75,
-                      child: TextField(
-                          style: Theme.of(context).textTheme.titleMedium,
-                          controller: goalController,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.teal),
-                            ),
-                            labelStyle: Theme.of(context).textTheme.titleSmall,
-                            border: const OutlineInputBorder(),
-                            labelText: 'Daily Steps Goal',
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("Steps Goal:",
+                              style: Theme.of(context).textTheme.headlineSmall),
+                          NumberPicker(
+                            textStyle: Theme.of(context).textTheme.titleSmall,
+                            selectedTextStyle: const TextStyle(
+                                color: Colors.teal, fontSize: 32),
+                            itemWidth: 100,
+                            itemHeight: 40,
+                            step: 100,
+                            minValue: 0,
+                            maxValue: 25000,
+                            value: stepsGoal,
+                            onChanged: (value) {
+                              database.ref('Users/$myUID/stepsGoal').set(value);
+                              setState(() {
+                                stepsGoal = value;
+                              });
+                            },
                           ),
-                          onSubmitted: (value) {
-                            setState(() {
-                              stepsGoal = int.parse(value);
-                            });
-
-                            //     debugPrint('Steps Goal: $stepsGoal');
-                          }),
-                    ),
+                        ]),
                     Padding(
                       padding: const EdgeInsets.only(top: 50),
                       child: TextButton(
                         child: const Text(
                           'Sign Out',
                           style: TextStyle(
-                            color: Colors.teal,
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.bold,
                             fontSize: 28,
                           ),
                         ),

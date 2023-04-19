@@ -8,7 +8,7 @@ class SsUser {
   String joinDate;
   String name;
   int stepsGoal;
-  Map<String, String> stepsMap;
+  Map<Object?, Object?> stepsMap;
 
   SsUser({
     required this.email,
@@ -27,8 +27,7 @@ class SsUser {
         'joinDate': joinDate,
         'name': name,
         'stepsGoal': stepsGoal,
-        'stepDates': stepsMap.keys.toList(),
-        'stepCounts': stepsMap.values.toList(),
+        "steps": stepsMap,
       };
 
   factory SsUser.fromJson(DatabaseEvent snapshot) {
@@ -36,20 +35,18 @@ class SsUser {
 
     //Stores the data from firebase in a map
     var fbData = snapshot.snapshot.value as Map<dynamic, dynamic>;
-    //Converts the stepDates and stepCounts lists to iterables    
-    Iterable<String> stepDates = Iterable.castFrom(fbData['stepDates']);
-    Iterable<String> stepCounts = Iterable.castFrom(fbData['stepCounts']);
+    //Converts the stepDates and stepCounts lists to iterables
     //Creates a map from the two lists
-    var stepsMap = Map<String, String>.fromIterables(stepDates, stepCounts);
     //Returns the user object
     return SsUser(
-      email: fbData['email'],
-      username: fbData['username'],
-      password: fbData['password'],
-      joinDate: fbData['joinDate'],
-      name: fbData['name'],
-      stepsMap: stepsMap,
-      stepsGoal: fbData['stepsGoal'],
+      //?? operator is a null check, if the value is null, it returns "error"
+      email: fbData['email'] ?? "error",
+      username: fbData['username'] ?? "error",
+      password: fbData['password'] ?? "error",
+      joinDate: fbData['joinDate'] ?? "error",
+      name: fbData['name'] ?? "error",
+      stepsMap: fbData['steps'] ?? "error",
+      stepsGoal: fbData['stepsGoal'] ?? "error",
     );
   }
 }
@@ -69,7 +66,7 @@ class Team {
 }
 
 class StepEvent {
-  int stepCount;
+  String stepCount;
   String date;
 
   StepEvent({
@@ -78,8 +75,7 @@ class StepEvent {
   });
 
 //Converts object to JSON syntax for firebase
-  Map<String, dynamic> toJson() => {
-        'stepCount': stepCount,
-        'date': date.toString(),
+  Map<String, String> toJson() => {
+        date: stepCount,
       };
 }

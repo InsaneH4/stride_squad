@@ -36,7 +36,7 @@ class AuthService {
           joinDate: DateFormat('M/d/yy').format(DateTime.now()),
           name: user.displayName!,
           stepsMap: {
-            DateFormat('M/d/yy').format(DateTime.now()): stepsNotifier.value,
+            DateFormat('M-d-yy').format(DateTime.now()): stepsNotifier.value,
           },
           stepsGoal: 10000,
         );
