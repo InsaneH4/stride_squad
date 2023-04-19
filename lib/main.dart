@@ -19,7 +19,7 @@ import 'screens/chat.dart';
 import 'screens/leaderboard.dart';
 import 'screens/profile.dart';
 
-var stepsGoal = 10000;
+var stepsGoal = 1;
 var signedIn = false;
 var database = FirebaseDatabase.instance;
 late final SharedPreferences appPrefs;

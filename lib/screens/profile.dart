@@ -1,12 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:stride_squad/helpers/my_objects.dart';
 import '/helpers/auth_service.dart';
 import '/main.dart';
-
-final myUID = FirebaseAuth.instance.currentUser!.uid;
+import 'homepage.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, required this.title});
@@ -28,7 +26,12 @@ class _ProfileState extends State<Profile> {
       future: database.ref('Users/$myUID').once(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
+          //gets signed in user info from db, converts from json to dart object
           final SsUser curUser = SsUser.fromJson(snapshot.data);
+          var totalSteps = 0;
+          for (var element in curUser.stepsMap.values) {
+            totalSteps += int.parse(element as String);
+          }
           debugPrint('Current User: ${curUser.toJson()}');
           return Scaffold(
             appBar: AppBar(
@@ -87,21 +90,21 @@ class _ProfileState extends State<Profile> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 30),
                       child: Text(
-                        '@StepsGod69',
+                        "@${curUser.username}",
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: Text(
-                        'Member since ${DateFormat('M/d/yy').format(DateTime.now())}',
+                        'Member since ${curUser.joinDate}',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 30),
                       child: Text(
-                        'Total steps: 2,654,327',
+                        'Total steps: $totalSteps',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
@@ -118,7 +121,7 @@ class _ProfileState extends State<Profile> {
                             itemWidth: 100,
                             itemHeight: 40,
                             step: 100,
-                            minValue: 0,
+                            minValue: 100,
                             maxValue: 25000,
                             value: stepsGoal,
                             onChanged: (value) {
@@ -150,9 +153,11 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           );
-        } else {
-          return const Center(child: CircularProgressIndicator());
         }
+        return const Center(
+            child: CircularProgressIndicator(
+          color: Colors.teal,
+        ));
       },
     );
   }

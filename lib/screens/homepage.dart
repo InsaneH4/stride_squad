@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:activity_ring/activity_ring.dart';
+import '../helpers/my_objects.dart';
 import '/helpers/theme_conf.dart';
 import '/main.dart';
 
 var isDark = appPrefs.getString("theme") == "dark" ? true : false;
+final myUID = FirebaseAuth.instance.currentUser!.uid;
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key, required this.title});
@@ -15,14 +18,18 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  var firstDayOfWeek =
+  final firstDayOfWeek =
       DateTime.now().subtract(Duration(days: DateTime.now().weekday));
-
-  //var mySteps = 9542;
   var teamSteps = 38922;
 
   @override
   Widget build(BuildContext context) {
+    // return FutureBuilder(
+    //   future: database.ref('Users/$myUID').once(),
+    //   builder: (context, snapshot) {
+    //     if (snapshot.hasData) {
+    //       final SsUser curUser = SsUser.fromJson(snapshot.data!);
+    //       stepsGoal = curUser.stepsGoal;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -48,29 +55,59 @@ class _HomepageState extends State<Homepage> {
           //   style: Theme.of(context).textTheme.headlineSmall,
           //   textAlign: TextAlign.center,
           // ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ValueListenableBuilder(
-                valueListenable: stepsNotifier,
-                builder: (context, value, child) => Text(
-                  'You: $value/$stepsGoal',
-                  style: const TextStyle(
-                    color: Colors.teal,
-                    fontSize: 25,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Text(
-                'Team: $teamSteps',
-                style: const TextStyle(
-                  color: Colors.blue,
-                  fontSize: 25,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+          FutureBuilder(
+            future: database.ref('Users/$myUID').once(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final SsUser curUser = SsUser.fromJson(snapshot.data!);
+                stepsGoal = curUser.stepsGoal;
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ValueListenableBuilder(
+                      valueListenable: stepsNotifier,
+                      builder: (context, value, child) => Text(
+                        'You: $value/${curUser.stepsGoal}',
+                        style: const TextStyle(
+                          color: Colors.teal,
+                          fontSize: 25,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Text(
+                      'Team: $teamSteps',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        fontSize: 25,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                );
+              } else {
+                return Column(
+                  children: const [
+                    Text(
+                      'You: ...',
+                      style: TextStyle(
+                        color: Colors.teal,
+                        fontSize: 25,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Team: ...',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 25,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                );
+              }
+            },
           ),
           Padding(
             padding: const EdgeInsets.all(160),
@@ -209,3 +246,12 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
+  //       }
+  //       return const Center(
+  //           child: CircularProgressIndicator(
+  //         color: Colors.teal,
+  //       ));
+  //     },
+  //   );
+  // }
+  //}
