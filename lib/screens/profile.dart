@@ -1,10 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:stride_squad/helpers/my_objects.dart';
 import '/helpers/auth_service.dart';
 import '/main.dart';
-import 'homepage.dart';
+import 'edit_user.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, required this.title});
@@ -22,6 +23,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     goalController.text = stepsGoal.toString();
+    final myUID = FirebaseAuth.instance.currentUser!.uid;
     return FutureBuilder(
       future: database.ref('Users/$myUID').once(),
       builder: (context, AsyncSnapshot snapshot) {
@@ -35,35 +37,16 @@ class _ProfileState extends State<Profile> {
           debugPrint('Current User: ${curUser.toJson()}');
           return Scaffold(
             appBar: AppBar(
-              title: Text(widget.title),
+              title: Text(curUser.name),
               actions: [
                 IconButton(
-                  onPressed: () {
-                    //shown dialog
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          backgroundColor: Colors.teal,
-                          title: const Text('Edit Profile'),
-                          content: const Text(
-                            "Not yet implemented",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('Ok',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.white)),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          EditUser(title: 'Edit Profile', curUser: curUser),
+                    ),
+                  ),
                   icon: const Icon(Icons.edit),
                 ),
               ],
@@ -126,9 +109,11 @@ class _ProfileState extends State<Profile> {
                             value: stepsGoal,
                             onChanged: (value) {
                               database.ref('Users/$myUID/stepsGoal').set(value);
-                              setState(() {
-                                stepsGoal = value;
-                              });
+                              setState(
+                                () {
+                                  stepsGoal = value;
+                                },
+                              );
                             },
                           ),
                         ]),
