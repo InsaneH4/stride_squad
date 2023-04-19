@@ -5,7 +5,7 @@ import 'package:numberpicker/numberpicker.dart';
 import 'package:stride_squad/helpers/my_objects.dart';
 import '/helpers/auth_service.dart';
 import '/main.dart';
-import 'edit_user.dart';
+import 'edit_profile.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, required this.title});
@@ -34,7 +34,6 @@ class _ProfileState extends State<Profile> {
           for (var element in curUser.stepsMap.values) {
             totalSteps += int.parse(element as String);
           }
-          debugPrint('Current User: ${curUser.toJson()}');
           return Scaffold(
             appBar: AppBar(
               title: Text(curUser.name),
@@ -44,7 +43,7 @@ class _ProfileState extends State<Profile> {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          EditUser(title: 'Edit Profile', curUser: curUser),
+                          EditProfile(title: 'Edit Profile', curUser: curUser),
                     ),
                   ),
                   icon: const Icon(Icons.edit),

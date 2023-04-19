@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:stride_squad/helpers/my_objects.dart';
-
 import 'homepage.dart';
 
-class EditUser extends StatefulWidget {
+class EditProfile extends StatefulWidget {
   final String title;
   final SsUser curUser;
-  const EditUser({super.key, required this.title, required this.curUser});
+  const EditProfile({super.key, required this.title, required this.curUser});
   @override
-  State<EditUser> createState() => _EditUserState();
+  State<EditProfile> createState() => _EditProfileState();
 }
 
-class _EditUserState extends State<EditUser> {
+class _EditProfileState extends State<EditProfile> {
   final nameController = TextEditingController();
 
   @override

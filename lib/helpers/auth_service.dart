@@ -28,27 +28,25 @@ class AuthService {
         await FirebaseAuth.instance.signInWithCredential(credential);
     var user = authResult.user;
     if (authResult.additionalUserInfo!.isNewUser) {
-      if (user != null) {
-        var newUser = SsUser(
-          username: user.displayName!.replaceAll(" ", ""),
-          joinDate: DateFormat('M/d/yy').format(DateTime.now()),
-          name: user.displayName!,
-          stepsMap: {
-            DateFormat('M-d-yy').format(DateTime.now()): stepsNotifier.value,
-          },
-          stepsGoal: 10000,
-        );
-        await database
-            .ref("/Users/${FirebaseAuth.instance.currentUser!.uid}")
-            .set(newUser.toJson());
-        //do stuff
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Error signing in with Google'),
-          ),
-        );
-      }
+      var newUser = SsUser(
+        username: user!.displayName!.replaceAll(" ", ""),
+        joinDate: DateFormat('M/d/yy').format(DateTime.now()),
+        name: user.displayName!,
+        stepsMap: {
+          DateFormat('M-d-yy').format(DateTime.now()): stepsNotifier.value,
+        },
+        stepsGoal: 10000,
+      );
+      debugPrint(newUser.toJson().toString());
+      await database
+          .ref("/Users/${FirebaseAuth.instance.currentUser!.uid}")
+          .set(newUser.toJson());
+      //do stuff
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error signing in with Google'),
+        ),
+      );
     }
     await FirebaseAuth.instance.signInWithCredential(credential);
   }

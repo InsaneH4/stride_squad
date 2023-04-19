@@ -16,14 +16,15 @@ class SsUser {
     required this.stepsGoal,
   });
 
-  Map<String, dynamic> toJson() => {
-        'username': username,
-        'joinDate': joinDate,
-        'name': name,
-        'stepsGoal': stepsGoal,
-        //sends steps in onStepCount
-        //"steps": stepsMap,
-      };
+  Map<String, dynamic> toJson() {
+    //Converts object to JSON syntax for firebase
+    return {
+      'username': username,
+      'joinDate': joinDate,
+      'name': name,
+      'stepsGoal': stepsGoal,
+    };
+  }
 
   factory SsUser.fromJson(DatabaseEvent snapshot) {
     //Converts JSON syntax from firebase to object
@@ -34,12 +35,11 @@ class SsUser {
     //Creates a map from the two lists
     //Returns the user object
     return SsUser(
-      //?? operator is a null check, if the value is null, it returns "error"
-      username: fbData['username'] ?? "error",
-      joinDate: fbData['joinDate'] ?? "error",
-      name: fbData['name'] ?? "error",
-      stepsMap: fbData['steps'] ?? "error",
-      stepsGoal: fbData['stepsGoal'] ?? "error",
+      username: fbData['username'],
+      joinDate: fbData['joinDate'],
+      name: fbData['name'],
+      stepsMap: fbData['steps'],
+      stepsGoal: fbData['stepsGoal'],
     );
   }
 }
