@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stride_squad/screens/pwd_reset.dart';
 import '../helpers/auth_service.dart';
@@ -87,20 +88,30 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor:
                         isDark ? Colors.grey[900] : Colors.grey[200],
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (emailController.text.isEmpty ||
                         passwordController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("Please enter an email and password"),
+                          backgroundColor: Colors.redAccent,
                         ),
                       );
                       return;
                     }
-                    AuthService().signInEmail(
-                      emailController.text,
-                      passwordController.text,
-                    );
+                    try {
+                      await AuthService().signInEmail(
+                        emailController.text,
+                        passwordController.text,
+                      );
+                    } on FirebaseAuthException catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(e.message!),
+                          backgroundColor: Colors.redAccent,
+                        ),
+                      );
+                    }
                   },
                   child: Row(
                     children: [

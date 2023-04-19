@@ -144,10 +144,13 @@ class _SignupPageState extends State<SignupPage> {
 
                     if (emailController.text.isEmpty ||
                         passwordController.text.isEmpty ||
-                        confirmController.text.isEmpty) {
+                        confirmController.text.isEmpty ||
+                        usernameController.text.isEmpty ||
+                        nameController.text.isEmpty ||
+                        nameController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Please enter an email and password'),
+                          content: Text('Please fill out all fields'),
                           backgroundColor: Colors.redAccent,
                         ),
                       );
@@ -163,8 +166,6 @@ class _SignupPageState extends State<SignupPage> {
                       return;
                     }
 
-                    //promise that goes to main app screen when resolved
-                    var errMsg = "Success";
                     try {
                       var newUser = SsUser(
                         email: emailController.text,
@@ -176,7 +177,7 @@ class _SignupPageState extends State<SignupPage> {
                           DateFormat('M/d/yy').format(DateTime.now()):
                               stepsNotifier.value,
                         },
-                        stepsGoal: 10000,
+                        stepsGoal: 5000,
                       );
                       await AuthService()
                           .signUp(emailController.text, passwordController.text)
@@ -189,28 +190,10 @@ class _SignupPageState extends State<SignupPage> {
                           Navigator.pop(context);
                         },
                       );
-                    } on FirebaseAuthException catch (error) {
-                      debugPrint(error.code.toString());
-                      switch (error.code) {
-                        case "invalid-email":
-                          errMsg =
-                              "Your email address appears to be malformed.";
-                          break;
-                        case "weak-password":
-                          errMsg = "Your password is too weak.";
-                          break;
-                        case "too-many-requests":
-                          errMsg = "Too many requests. Try again later.";
-                          break;
-                        case "email-already-in-use":
-                          errMsg = "Email already in use.";
-                          break;
-                        default:
-                          errMsg = "An undefined Error happened.";
-                      }
+                    } on FirebaseAuthException catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(errMsg),
+                          content: Text(e.message!),
                           backgroundColor: Colors.redAccent,
                         ),
                       );

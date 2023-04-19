@@ -24,8 +24,7 @@ class _PasswordResetState extends State<PasswordReset> {
               ),
             ),
           );
-    } on FirebaseAuthException catch (e) {
-      debugPrint(e.message);
+    } on FirebaseAuthException catch (e) {      
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.message!),
