@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stride_squad/screens/pwd_reset.dart';
 import '../helpers/auth_service.dart';
 import 'homepage.dart';
 import 'signup.dart';
@@ -19,7 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 20, 8, 20),
+              padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
               child: TextField(
                 style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 keyboardType: TextInputType.emailAddress,
@@ -60,9 +60,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
               child: TextField(
-                style: const TextStyle(color: Colors.black),
+                style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
@@ -102,23 +102,25 @@ class _LoginPageState extends State<LoginPage> {
                       passwordController.text,
                     );
                   },
-                  child: Row(children: [
-                    const Icon(
-                      size: 40,
-                      Icons.email_outlined,
-                      color: Colors.teal,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        "Sign In With Email",
-                        style: TextStyle(
-                          color: isDark ? Colors.white : Colors.black,
-                          fontSize: 26,
+                  child: Row(
+                    children: [
+                      const Icon(
+                        size: 40,
+                        Icons.email_outlined,
+                        color: Colors.teal,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          "Sign In With Email",
+                          style: TextStyle(
+                            color: isDark ? Colors.white : Colors.black,
+                            fontSize: 26,
+                          ),
                         ),
                       ),
-                    ),
-                  ]),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -166,6 +168,24 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.teal,
                     fontSize: 20,
                   ),
+                ),
+              ),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blueAccent,
+              ),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PasswordReset(),
+                ),
+              ),
+              child: const Text(
+                "Forgot Password?",
+                style: TextStyle(
+                  color: Colors.teal,
+                  fontSize: 20,
                 ),
               ),
             ),

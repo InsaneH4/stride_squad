@@ -31,7 +31,7 @@ class _SignupPageState extends State<SignupPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 150, 8, 0),
+              padding: const EdgeInsets.fromLTRB(8, 50, 8, 0),
               child: Text('Welcome to Stride Squad!',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headlineMedium),
@@ -45,7 +45,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 50, 8, 16),
+              padding: const EdgeInsets.fromLTRB(12, 50, 12, 16),
               child: TextField(
                 style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 keyboardType: TextInputType.emailAddress,
@@ -63,7 +63,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 16),
               child: TextField(
                 style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 controller: nameController,
@@ -80,7 +80,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 16),
               child: TextField(
                 style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 controller: usernameController,
@@ -97,7 +97,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 16),
               child: TextField(
                 style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 obscureText: true,
@@ -115,7 +115,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
               child: TextField(
                 style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 obscureText: true,

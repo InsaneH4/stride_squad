@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -106,9 +107,10 @@ class _MainPageState extends State<MainPage> {
       date: DateFormat("M-dd-y").format(event.timeStamp),
     );
     stepsList.add(thisStep);
-    debugPrint("Steps: ${thisStep.stepCount} - At: ${thisStep.date}");    
-    await database.ref('Steps').set(thisStep.toJson());
-    stepsNotifier.value = event.steps.toString();    
+    debugPrint("Steps: ${thisStep.stepCount} - At: ${thisStep.date}");
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    await database.ref('Users/$uid/steps').set(thisStep.toJson());
+    stepsNotifier.value = event.steps.toString();
   }
 
   void onStepCountError(error) {
