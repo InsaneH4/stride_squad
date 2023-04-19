@@ -2,33 +2,29 @@ import 'dart:core';
 import 'package:firebase_database/firebase_database.dart';
 
 class SsUser {
-  String email;
   String username;
-  String password;
   String joinDate;
   String name;
   int stepsGoal;
   Map<Object?, Object?> stepsMap;
 
   SsUser({
-    required this.email,
     required this.username,
-    required this.password,
     required this.joinDate,
     required this.name,
     required this.stepsMap,
     required this.stepsGoal,
   });
 
-  Map<String, dynamic> toJson() => {
-        'email': email,
-        'username': username,
-        'password': password,
-        'joinDate': joinDate,
-        'name': name,
-        'stepsGoal': stepsGoal,
-        "steps": stepsMap,
-      };
+  Map<String, dynamic> toJson() {
+    //Converts object to JSON syntax for firebase
+    return {
+      'username': username,
+      'joinDate': joinDate,
+      'name': name,
+      'stepsGoal': stepsGoal,
+    };
+  }
 
   factory SsUser.fromJson(DatabaseEvent snapshot) {
     //Converts JSON syntax from firebase to object
@@ -39,14 +35,11 @@ class SsUser {
     //Creates a map from the two lists
     //Returns the user object
     return SsUser(
-      //?? operator is a null check, if the value is null, it returns "error"
-      email: fbData['email'] ?? "error",
-      username: fbData['username'] ?? "error",
-      password: fbData['password'] ?? "error",
-      joinDate: fbData['joinDate'] ?? "error",
-      name: fbData['name'] ?? "error",
-      stepsMap: fbData['steps'] ?? "error",
-      stepsGoal: fbData['stepsGoal'] ?? "error",
+      username: fbData['username'],
+      joinDate: fbData['joinDate'],
+      name: fbData['name'],
+      stepsMap: fbData['steps'],
+      stepsGoal: fbData['stepsGoal'],
     );
   }
 }

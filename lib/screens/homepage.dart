@@ -24,6 +24,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(myUID);
     // return FutureBuilder(
     //   future: database.ref('Users/$myUID').once(),
     //   builder: (context, snapshot) {
