@@ -4,16 +4,14 @@ import 'package:firebase_database/firebase_database.dart';
 class SsUser {
   String username;
   String joinDate;
-  String name;
-  String uid;
+  String name;  
   int stepsGoal;
   Map<Object?, Object?> stepsMap;
 
   SsUser({
     required this.username,
     required this.joinDate,
-    required this.name,
-    required this.uid,
+    required this.name,    
     required this.stepsMap,
     required this.stepsGoal,
   });
@@ -23,8 +21,7 @@ class SsUser {
     return {
       'username': username,
       'joinDate': joinDate,
-      'name': name,
-      'uid': uid,
+      'name': name,      
       'stepsGoal': stepsGoal,
     };
   }
@@ -40,8 +37,7 @@ class SsUser {
     return SsUser(
       username: fbData['username'],
       joinDate: fbData['joinDate'],
-      name: fbData['name'],
-      uid: fbData['uid'],
+      name: fbData['name'],      
       stepsMap: fbData['steps'],
       stepsGoal: fbData['stepsGoal'],
     );

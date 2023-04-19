@@ -23,7 +23,7 @@ class _HomepageState extends State<Homepage> {
   var teamSteps = 38922;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     debugPrint(myUID);
     // return FutureBuilder(
     //   future: database.ref('Users/$myUID').once(),

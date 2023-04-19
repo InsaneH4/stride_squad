@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stride_squad/helpers/my_objects.dart';
 import '../main.dart';
@@ -124,10 +125,10 @@ class _EditProfileState extends State<EditProfile> {
                         },
                       );
                       database
-                          .ref('Users/${widget.curUser.uid}/username')
+                          .ref('Users/${FirebaseAuth.instance.currentUser!.uid}/username')
                           .set(widget.curUser.username);
                       database
-                          .ref('Users/${widget.curUser.uid}/name')
+                          .ref('Users/${FirebaseAuth.instance.currentUser!.uid}/name')
                           .set(widget.curUser.name);
                       //update database with new info
                     }
