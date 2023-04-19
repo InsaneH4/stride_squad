@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'package:firebase_database/firebase_database.dart';
 
 class SsUser {
   String email;
@@ -6,8 +7,8 @@ class SsUser {
   String password;
   String joinDate;
   String name;
-  Map<String, int> stepsMap;
   int stepsGoal;
+  Map<String, String> stepsMap;
 
   SsUser({
     required this.email,
@@ -25,10 +26,32 @@ class SsUser {
         'password': password,
         'joinDate': joinDate,
         'name': name,
+        'stepsGoal': stepsGoal,
         'stepDates': stepsMap.keys.toList(),
         'stepCounts': stepsMap.values.toList(),
-        'stepsGoal': stepsGoal,
       };
+
+  factory SsUser.fromJson(DatabaseEvent snapshot) {
+    //Converts JSON syntax from firebase to object
+
+    //Stores the data from firebase in a map
+    var fbData = snapshot.snapshot.value as Map<dynamic, dynamic>;
+    //Converts the stepDates and stepCounts lists to iterables    
+    Iterable<String> stepDates = Iterable.castFrom(fbData['stepDates']);
+    Iterable<String> stepCounts = Iterable.castFrom(fbData['stepCounts']);
+    //Creates a map from the two lists
+    var stepsMap = Map<String, String>.fromIterables(stepDates, stepCounts);
+    //Returns the user object
+    return SsUser(
+      email: fbData['email'],
+      username: fbData['username'],
+      password: fbData['password'],
+      joinDate: fbData['joinDate'],
+      name: fbData['name'],
+      stepsMap: stepsMap,
+      stepsGoal: fbData['stepsGoal'],
+    );
+  }
 }
 
 class Team {

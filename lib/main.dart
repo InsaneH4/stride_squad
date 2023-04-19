@@ -24,7 +24,7 @@ var signedIn = false;
 var database = FirebaseDatabase.instance;
 late final SharedPreferences appPrefs;
 final themeController = ThemeController(appPrefs);
-final stepsNotifier = ValueNotifier(0);
+final stepsNotifier = ValueNotifier("0");
 final stepsList = <StepEvent>[];
 
 //User object
@@ -107,7 +107,7 @@ class _MainPageState extends State<MainPage> {
     );
     stepsList.add(thisStep);
     debugPrint("Steps: ${thisStep.stepCount} - At: ${thisStep.date}");
-    stepsNotifier.value = event.steps;
+    stepsNotifier.value = event.steps.toString();
     debugPrint("\nSteps in list:");
     for (var step in stepsList) {
       debugPrint("Steps: ${step.stepCount} - At: ${step.date}}");
@@ -119,40 +119,24 @@ class _MainPageState extends State<MainPage> {
   void onStepCountError(error) {
     debugPrint('onStepCountError: $error');
     setState(() {
-      stepsNotifier.value = -1;
+      stepsNotifier.value = "-1";
     });
   }
 
-  void initPlatformState() {
-    stepCountStream = Pedometer.stepCountStream;
-    stepCountStream.listen(onStepCount).onError(onStepCountError);
-    if (!mounted) return;
-  }
-
-  Future<PermissionStatus> checkPermission() async {
-    var status = await Permission.activityRecognition.status;
-    if (status.isDenied) {
-      status = await Permission.activityRecognition.request();
-    }
-    return status;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
+  Future<bool> getActivityPerms() async =>
+      await Permission.activityRecognition.request().isGranted;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: checkPermission().isGranted,
+      future: getActivityPerms(),
       //snapshot is the value returned by the future
       builder: (context, AsyncSnapshot<bool> snapshot) {
         //data is the boolean value "stored" in the snapshot
-        var granted = snapshot.data;
         //Checks if activity permission is granted
-        if (snapshot.hasData && granted == true) {
+        if (snapshot.hasData && snapshot.data == true) {
+          stepCountStream = Pedometer.stepCountStream;
+    stepCountStream.listen(onStepCount).onError(onStepCountError);
           return Scaffold(
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,

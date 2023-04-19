@@ -48,6 +48,7 @@ dependencies:
   firebase_database: ^10.1.0
   google_sign_in: ^6.1.0
   firebase_auth: ^4.2.2
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:

@@ -85,8 +85,9 @@ class _HomepageState extends State<Homepage> {
                 ValueListenableBuilder(
                   valueListenable: stepsNotifier,
                   builder: (context, value, child) => Ring(
-                    percent:
-                        value > stepsGoal ? 100 : (value / stepsGoal) * 100,
+                    percent: int.parse(value) > stepsGoal
+                        ? 100
+                        : (int.parse(value) / stepsGoal) * 100,
                     // if (percent = 100)
                     // {
                     //  colo
