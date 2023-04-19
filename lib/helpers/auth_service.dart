@@ -30,9 +30,7 @@ class AuthService {
     if (authResult.additionalUserInfo!.isNewUser) {
       if (user != null) {
         var newUser = SsUser(
-          email: user.email!,
           username: user.displayName!.replaceAll(" ", ""),
-          password: "no set password (is google account)",
           joinDate: DateFormat('M/d/yy').format(DateTime.now()),
           name: user.displayName!,
           stepsMap: {

@@ -29,9 +29,7 @@ final stepsNotifier = ValueNotifier("0");
 final stepsList = <StepEvent>[];
 
 //User object
-var testUser = SsUser(
-  email: 'yourmom@test.com',
-  password: 'hackme',
+var testUser = SsUser(  
   username: '@StepsGod69',
   name: "Joe Walker",
   joinDate: DateFormat('M/d/yy').format(DateTime.now()),

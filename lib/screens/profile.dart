@@ -97,7 +97,7 @@ class _ProfileState extends State<Profile> {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: Text(
-                        'Member since ${curUser.joinDate}',
+                        'Member since: ${curUser.joinDate}',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),

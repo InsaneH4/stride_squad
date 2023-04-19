@@ -167,10 +167,8 @@ class _SignupPageState extends State<SignupPage> {
                     }
 
                     try {
-                      var newUser = SsUser(
-                        email: emailController.text,
-                        username: usernameController.text,
-                        password: passwordController.text,
+                      var newUser = SsUser(                        
+                        username: usernameController.text,                        
                         joinDate: DateFormat('M/d/yy').format(DateTime.now()),
                         name: nameController.text,
                         stepsMap: {
