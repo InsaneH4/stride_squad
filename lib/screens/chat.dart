@@ -6,6 +6,7 @@ class Chat extends StatefulWidget {
   final String title;
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChatState createState() => _ChatState();
 }
 
@@ -25,7 +26,7 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat'),
+        title: const Text('Chat'),
       ),
       body: Column(
         children: <Widget>[
@@ -39,7 +40,7 @@ class _ChatState extends State<Chat> {
           ),
           TextField(
             controller: _controller,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Enter a message',
             ),
             onSubmitted: _handleSubmit,
