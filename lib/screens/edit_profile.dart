@@ -113,10 +113,28 @@ class _EditProfileState extends State<EditProfile> {
                 child: ElevatedButton(
                   child: const Text('Save Changes',
                       style: TextStyle(fontSize: 26, color: Colors.white)),
-                  onPressed: () {
+                  onPressed: () async {
                     if (oldPwdController.text.isNotEmpty &&
                         newPwdController.text.isNotEmpty) {
-                      //change password
+                      try {
+                        await FirebaseAuth.instance.currentUser!
+                            .reauthenticateWithCredential(
+                          EmailAuthProvider.credential(
+                            email: FirebaseAuth.instance.currentUser!.email!,
+                            password: oldPwdController.text,
+                          ),
+                        );
+                        await FirebaseAuth.instance.currentUser!
+                            .updatePassword(newPwdController.text);
+                      } on FirebaseAuthException catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.redAccent,
+                            content: Text(e.message!),
+                          ),
+                        );
+                        return;
+                      }
                     } else {
                       setState(
                         () {
@@ -125,13 +143,21 @@ class _EditProfileState extends State<EditProfile> {
                         },
                       );
                       database
-                          .ref('Users/${FirebaseAuth.instance.currentUser!.uid}/username')
+                          .ref(
+                              'Users/${FirebaseAuth.instance.currentUser!.uid}/username')
                           .set(widget.curUser.username);
                       database
-                          .ref('Users/${FirebaseAuth.instance.currentUser!.uid}/name')
+                          .ref(
+                              'Users/${FirebaseAuth.instance.currentUser!.uid}/name')
                           .set(widget.curUser.name);
                       //update database with new info
                     }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Changes Saved"),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
                     Navigator.pop(context);
                   },
                 ),
