@@ -14,11 +14,11 @@ class _InspirationAppState extends State<InspirationApp>
   late Animation<Color?> _colorAnimation;
 
   List<String> quotes = [
-    "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
-    "Believe you can and you're halfway there. - Theodore Roosevelt",
-    "Happiness is not something ready made. It comes from your own actions. - Dalai Lama",
-    "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. - Christian D. Larson",
-    "You are never too old to set another goal or to dream a new dream. - C.S. Lewis"
+    "The future belongs to those who believe in the beauty of their dreams. \n\n- Eleanor Roosevelt",
+    "Believe you can and you're halfway there. \n\n- Theodore Roosevelt",
+    "Happiness is not something ready made. It comes from your own actions. \n\n- Dalai Lama",
+    "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. \n\n- Christian D. Larson",
+    "You are never too old to set another goal or to dream a new dream. \n\n- C.S. Lewis"
   ];
 
   List<List<Color>> gradients = [
@@ -82,7 +82,7 @@ class _InspirationAppState extends State<InspirationApp>
                   child: Text(
                     quote,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.greatVibes(
+                    style: GoogleFonts.patrickHand(
                       fontSize: 28.0,
                       color: Colors.white,
                     ),
