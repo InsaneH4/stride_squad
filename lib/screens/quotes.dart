@@ -41,7 +41,7 @@ class _QuotesState extends State<Quotes> with SingleTickerProviderStateMixin {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 6),
+      duration: Duration(seconds: 4),
     )..repeat(reverse: true);
     _colorAnimation = ColorTween(
       begin: gradients.first,
@@ -89,7 +89,7 @@ class _QuotesState extends State<Quotes> with SingleTickerProviderStateMixin {
                   child: Text(
                     quote,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.patrickHand(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 28.0,
                       color: Colors.white,
                     ),
