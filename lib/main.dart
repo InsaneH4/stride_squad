@@ -94,7 +94,7 @@ class _MainPageState extends State<MainPage> {
   final screensList = [
     const Homepage(title: "Today's Steps"),
     const Leaderboard(title: "Leaderboard"),
-    const Chat(title: "Chat"),
+    const Quotes(title: "Quotes"),
     const Profile(title: "Profile"),
   ];
   late Stream<StepCount> stepCountStream;

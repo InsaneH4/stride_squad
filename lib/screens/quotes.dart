@@ -2,13 +2,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InspirationApp extends StatefulWidget {
+class Quotes extends StatefulWidget {
+  final String title;
+  const Quotes({super.key, required this.title});
+
   @override
-  _InspirationAppState createState() => _InspirationAppState();
+  State<Quotes> createState() => _QuotesState();
 }
 
-class _InspirationAppState extends State<InspirationApp>
-    with SingleTickerProviderStateMixin {
+class _QuotesState extends State<Quotes> with SingleTickerProviderStateMixin {
   String quote = "Click to get inspired!";
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;
@@ -21,12 +23,17 @@ class _InspirationAppState extends State<InspirationApp>
     "You are never too old to set another goal or to dream a new dream. \n\n- C.S. Lewis"
   ];
 
-  List<List<Color>> gradients = [
-    [Colors.purple.shade200, Colors.deepPurple.shade400],
-    [Colors.blue.shade200, Colors.lightBlue.shade400],
-    [Colors.orange.shade200, Colors.orange.shade400],
-    [Colors.yellow.shade200, Colors.amber.shade400],
-    [Colors.red.shade200, Colors.red.shade400],
+  final gradients = [
+    Colors.purple.shade200,
+    Colors.deepPurple.shade400,
+    Colors.blue.shade200,
+    Colors.lightBlue.shade400,
+    Colors.orange.shade200,
+    Colors.orange.shade400,
+    Colors.yellow.shade200,
+    Colors.amber.shade400,
+    Colors.red.shade200,
+    Colors.red.shade400,
   ];
 
   @override
@@ -37,8 +44,8 @@ class _InspirationAppState extends State<InspirationApp>
       duration: Duration(seconds: 6),
     )..repeat(reverse: true);
     _colorAnimation = ColorTween(
-      begin: gradients.first.first,
-      end: gradients.last.last,
+      begin: gradients.first,
+      end: gradients.last,
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
@@ -95,22 +102,4 @@ class _InspirationAppState extends State<InspirationApp>
       ),
     );
   }
-}
-
-class Chat extends StatelessWidget {
-  const Chat({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return InspirationApp();
-  }
-}
-
-void main() {
-  runApp(MaterialApp(
-    title: 'My App',
-    home: Chat(title: 'My Inspiration App'),
-  ));
 }
