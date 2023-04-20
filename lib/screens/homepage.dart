@@ -104,10 +104,6 @@ class _HomepageState extends State<Homepage> {
                     percent: int.parse(value) > stepsGoal
                         ? 100
                         : (int.parse(value) / stepsGoal) * 100,
-                    // if (percent = 100)
-                    // {
-                    //  colo
-                    //}
                     color: RingColorScheme(ringColor: Colors.teal),
                     radius: 140,
                     width: 30,

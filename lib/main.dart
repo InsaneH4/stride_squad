@@ -151,8 +151,8 @@ class _MainPageState extends State<MainPage> {
                   label: 'Leaderboard',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.message_rounded),
-                  label: 'Chat',
+                  icon: Icon(Icons.lightbulb),
+                  label: 'Quotes',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person_rounded),
