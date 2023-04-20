@@ -23,7 +23,7 @@ class _HomepageState extends State<Homepage> {
   var teamSteps = 38922;
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     debugPrint(myUID);
     // return FutureBuilder(
     //   future: database.ref('Users/$myUID').once(),
@@ -76,14 +76,6 @@ class _HomepageState extends State<Homepage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Text(
-                      'Team: $teamSteps',
-                      style: const TextStyle(
-                        color: Colors.blue,
-                        fontSize: 25,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
                   ],
                 );
               } else {
@@ -97,14 +89,6 @@ class _HomepageState extends State<Homepage> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    Text(
-                      'Team: ...',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 25,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
                   ],
                 );
               }
@@ -114,12 +98,6 @@ class _HomepageState extends State<Homepage> {
             padding: const EdgeInsets.all(160),
             child: Stack(
               children: [
-                // Ring(
-                //  percent: 100,
-                //  color: RingColorScheme(
-                //     ringColor: Color.fromARGB(255, 126, 237, 130)),
-                // radius: 20,
-                //width: 40),
                 ValueListenableBuilder(
                   valueListenable: stepsNotifier,
                   builder: (context, value, child) => Ring(
@@ -131,15 +109,9 @@ class _HomepageState extends State<Homepage> {
                     //  colo
                     //}
                     color: RingColorScheme(ringColor: Colors.teal),
-                    radius: 100,
-                    width: 20,
+                    radius: 140,
+                    width: 25,
                   ),
-                ),
-                Ring(
-                  percent: 70,
-                  color: RingColorScheme(ringColor: Colors.blue),
-                  radius: 150,
-                  width: 20,
                 ),
               ],
             ),
