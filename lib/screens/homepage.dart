@@ -53,35 +53,41 @@ class _HomepageState extends State<Homepage> {
           Stack(
             alignment: Alignment.center,
             children: [
-              FutureBuilder(
-                future: database.ref('Users/$myUID').once(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final SsUser curUser = SsUser.fromJson(snapshot.data!);
-                    stepsGoal = curUser.stepsGoal;
-                    return ValueListenableBuilder(
-                      valueListenable: stepsNotifier,
-                      builder: (context, value, child) => Text(
-                        value,
-                        style: const TextStyle(
-                          color: Colors.blueAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 72,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    );
-                  } else {
-                    return const Text(
-                      '...',
-                      style: TextStyle(
-                        color: Colors.teal,
-                        fontSize: 25,
-                      ),
-                      textAlign: TextAlign.center,
-                    );
-                  }
-                },
+              Column(
+                children: [
+                  FutureBuilder(
+                    future: database.ref('Users/$myUID').once(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final SsUser curUser = SsUser.fromJson(snapshot.data!);
+                        stepsGoal = curUser.stepsGoal;
+                        return ValueListenableBuilder(
+                          valueListenable: stepsNotifier,
+                          builder: (context, value, child) => Text(
+                            value,
+                            style: const TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 72,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        );
+                      } else {
+                        return const Text(
+                          '...',
+                          style: TextStyle(
+                            color: Colors.teal,
+                            fontSize: 25,
+                          ),
+                          textAlign: TextAlign.center,
+                        );
+                      }
+                    },
+                  ),
+                  const Text("Steps",
+                      style: TextStyle(color: Colors.blueAccent, fontSize: 26)),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.all(160),
@@ -123,7 +129,7 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Text("M", style: Theme.of(context).textTheme.titleMedium),
                   Ring(
-                      percent: 70,
+                      percent: 85,
                       color: RingColorScheme(ringColor: Colors.teal),
                       radius: 25,
                       width: 7),
@@ -134,7 +140,7 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Text("Tu", style: Theme.of(context).textTheme.titleMedium),
                   Ring(
-                    percent: 70,
+                    percent: 100,
                     color: RingColorScheme(ringColor: Colors.teal),
                     radius: 25,
                     width: 7,
@@ -146,7 +152,7 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Text("W", style: Theme.of(context).textTheme.titleMedium),
                   Ring(
-                    percent: 70,
+                    percent: (int.parse(stepsNotifier.value) / stepsGoal) * 100,
                     color: RingColorScheme(ringColor: Colors.teal),
                     radius: 25,
                     width: 7,
@@ -163,7 +169,7 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Text("Th", style: Theme.of(context).textTheme.titleMedium),
                   Ring(
-                    percent: 70,
+                    percent: 0,
                     color: RingColorScheme(ringColor: Colors.teal),
                     radius: 25,
                     width: 7,
@@ -175,7 +181,7 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Text("F", style: Theme.of(context).textTheme.titleMedium),
                   Ring(
-                    percent: 70,
+                    percent: 0,
                     color: RingColorScheme(ringColor: Colors.teal),
                     radius: 25,
                     width: 7,
@@ -187,7 +193,7 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Text("Sa", style: Theme.of(context).textTheme.titleMedium),
                   Ring(
-                    percent: 70,
+                    percent: 0,
                     color: RingColorScheme(ringColor: Colors.teal),
                     radius: 25,
                     width: 7,

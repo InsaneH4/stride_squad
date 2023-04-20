@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animate_gradient/animate_gradient.dart';
+import 'package:username_generator/username_generator.dart';
 
 class Leaderboard extends StatefulWidget {
   const Leaderboard({super.key, required this.title});
@@ -39,30 +40,31 @@ class _LeaderboardState extends State<Leaderboard>
           Colors.greenAccent,
           Colors.green,
         ],
-        child:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Container(
-            padding: const EdgeInsets.only(
-                left: 40.0, top: 30.0, right: 40.0, bottom: 4.0),
-            //child: Text("Leaderboard",
-            //  style: Theme.of(context).textTheme.headlineSmall),
-          ),
-          // Horizontal Row containing Top 3 Teams
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: const [
-                  CircleAvatar(
-                    backgroundImage:
-                        AssetImage("assets/Stock_LeaderBoard_image.png"),
-                    radius: 35,
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
-                      child: Text("Team 1",
-                          style: TextStyle(fontSize: 20, color: Colors.white))),
-                  /*Padding(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(
+                  left: 40.0, top: 30.0, right: 40.0, bottom: 4.0),
+              //child: Text("Leaderboard",
+              //  style: Theme.of(context).textTheme.headlineSmall),
+            ),
+            // Horizontal Row containing Top 3 Teams
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: const [
+                    CircleAvatar(
+                      backgroundImage: AssetImage("assets/sam_pfp.jpg"),
+                      radius: 35,
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
+                        child: Text("#1 InsaneH",
+                            style:
+                                TextStyle(fontSize: 20, color: Colors.white))),
+                    /*Padding(
                             padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                             child: Text(
                               "1",
@@ -70,22 +72,21 @@ class _LeaderboardState extends State<Leaderboard>
                                 )
                             ),
                             */
-                ],
-              ),
-              Column(
-                children: const [
-                  CircleAvatar(
-                    backgroundImage:
-                        AssetImage("assets/Stock_LeaderBoard_image.png"),
-                    radius: 35,
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
-                      child: Text(
-                        "Team 2",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      )),
-                  /*
+                  ],
+                ),
+                Column(
+                  children: const [
+                    CircleAvatar(
+                      backgroundImage: AssetImage("assets/default_pfp.jpg"),
+                      radius: 35,
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
+                        child: Text(
+                          "#2 StepLord",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        )),
+                    /*
                             Padding(
                             padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                             child: Text(
@@ -94,20 +95,20 @@ class _LeaderboardState extends State<Leaderboard>
                                 )
                             ),
                             */
-                ],
-              ),
-              Column(children: const [
-                CircleAvatar(
-                  backgroundImage:
-                      AssetImage("assets/Stock_LeaderBoard_image.png"),
-                  radius: 35,
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
-                  child: Text("Team 3",
-                      style: TextStyle(fontSize: 20, color: Colors.white)),
-                ),
-                /*Padding(
+                Column(children: const [
+                  CircleAvatar(
+                    backgroundImage:
+                        AssetImage("assets/Stock_LeaderBoard_image.png"),
+                    radius: 35,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0, bottom: 0.1),
+                    child: Text("#3 RedDasher",
+                        style: TextStyle(fontSize: 20, color: Colors.white)),
+                  ),
+                  /*Padding(
                               padding: const EdgeInsets.only(top: 5.0, bottom: 0.1),
                               child: Text(
                                 "3",
@@ -115,54 +116,63 @@ class _LeaderboardState extends State<Leaderboard>
                                   )
                              ),
                              */
-              ]),
-            ],
-          ),
-          //looks better without divider?
-          // const Divider(
-          //   color: Colors.white,
-          //   height: 2,
-          // ),
-          Expanded(
-              child: ListView.builder(
-            padding: const EdgeInsets.only(top: 10),
-            itemCount: 17,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) => SizedBox(
-              height: 90,
-              child: Card(
-                  color: Colors.white.withOpacity(0.55),
-                  child: ListTile(
-                    tileColor: Colors.white.withOpacity(0.0),
-                    //shape:Border.all(width: 0.5),
-                    trailing: Transform(
-                      transform: Matrix4.translationValues(-80, 11.0, 0.0),
-                      child: const Text(
-                        'RedDashers',
-                        style: TextStyle(fontSize: 32, color: Colors.black),
-                      ),
-                    ),
-                    leading: Transform(
-                      transform: Matrix4.translationValues(2, 11.0, 0.0),
-                      child: Text(
-                        '${index + 4}',
-                        style:
-                            const TextStyle(fontSize: 26, color: Colors.black),
-                      ),
-                    ),
-                    // onTap: showTeamDialog,
-                    title: Transform(
-                      transform: Matrix4.translationValues(-50, 12.0, 0.0),
-                      child: const CircleAvatar(
-                        radius: 22,
-                        backgroundImage:
-                            AssetImage("assets/Stock_LeaderBoard_image.png"),
-                      ),
-                    ),
-                  )),
+                ]),
+              ],
             ),
-          )),
-        ]),
+            //looks better without divider?
+            // const Divider(
+            //   color: Colors.white,
+            //   height: 2,
+            // ),
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.only(top: 10),
+                itemCount: 17,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) => SizedBox(
+                  height: 90,
+                  child: Card(
+                    color: Colors.white.withOpacity(0.55),
+                    child: ListTile(
+                      tileColor: Colors.white.withOpacity(0.0),
+                      //shape:Border.all(width: 0.5),
+                      trailing: Transform(
+                        transform: Matrix4.translationValues(-30, 11.0, 0.0),
+                        child: Text(
+                          'StrideSquader${index + 4}',
+                          style: const TextStyle(
+                              fontSize: 32, color: Colors.black),
+                        ),
+                      ),
+                      leading: Transform(
+                        transform: Matrix4.translationValues(2, 11.0, 0.0),
+                        child: Text(
+                          '${index + 4}',
+                          style: const TextStyle(
+                              fontSize: 26, color: Colors.black),
+                        ),
+                      ),
+                      // onTap: showTeamDialog,
+                      title: Transform(
+                        transform: Matrix4.translationValues(-20, 12.0, 0.0),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                image: AssetImage("assets/shoe.png")),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     ); //,
   }
