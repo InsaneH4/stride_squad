@@ -53,43 +53,35 @@ class _HomepageState extends State<Homepage> {
           Stack(
             alignment: Alignment.center,
             children: [
-              Column(
-                children: [
-                  FutureBuilder(
-                    future: database.ref('Users/$myUID').once(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final SsUser curUser = SsUser.fromJson(snapshot.data!);
-                        stepsGoal = curUser.stepsGoal;
-                        return ValueListenableBuilder(
-                          valueListenable: stepsNotifier,
-                          builder: (context, value, child) => Text(
-                            value,
-                            style: const TextStyle(
-                              color: Colors.blueAccent,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 72,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        );
-                      } else {
-                        return const Text(
-                          '...',
-                          style: TextStyle(
-                            color: Colors.teal,
-                            fontSize: 25,
-                          ),
-                          textAlign: TextAlign.center,
-                        );
-                      }
-                    },
-                  ),
-                  const Text(
-                    "Steps",
-                    style: TextStyle(fontSize: 26, color: Colors.blueAccent),
-                  ),
-                ],
+              FutureBuilder(
+                future: database.ref('Users/$myUID').once(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final SsUser curUser = SsUser.fromJson(snapshot.data!);
+                    stepsGoal = curUser.stepsGoal;
+                    return ValueListenableBuilder(
+                      valueListenable: stepsNotifier,
+                      builder: (context, value, child) => Text(
+                        value,
+                        style: const TextStyle(
+                          color: Colors.blueAccent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 72,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  } else {
+                    return const Text(
+                      '...',
+                      style: TextStyle(
+                        color: Colors.teal,
+                        fontSize: 25,
+                      ),
+                      textAlign: TextAlign.center,
+                    );
+                  }
+                },
               ),
               Padding(
                 padding: const EdgeInsets.all(160),
@@ -108,7 +100,7 @@ class _HomepageState extends State<Homepage> {
             ],
           ),
           Text(
-            'Steps This Week',
+            'Week of ${firstDayOfWeek.month}/${firstDayOfWeek.day}',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           Row(
