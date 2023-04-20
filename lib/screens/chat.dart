@@ -10,9 +10,8 @@ class InspirationApp extends StatefulWidget {
 class _InspirationAppState extends State<InspirationApp>
     with SingleTickerProviderStateMixin {
   String quote = "Click to get inspired!";
-  Color color = Colors.blueGrey;
   late AnimationController _controller;
-  late Animation<double> _animation;
+  late Animation<Color?> _colorAnimation;
 
   List<String> quotes = [
     "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
@@ -22,37 +21,34 @@ class _InspirationAppState extends State<InspirationApp>
     "You are never too old to set another goal or to dream a new dream. - C.S. Lewis"
   ];
 
-  List<Color> colors = [
-    Colors.blueGrey,
-    Colors.teal,
-    Colors.deepPurple,
-    Colors.blue,
-    Colors.indigo,
-    Colors.orange,
-    Colors.red,
+  List<List<Color>> gradients = [
+    [Colors.purple.shade200, Colors.deepPurple.shade400],
+    [Colors.blue.shade200, Colors.lightBlue.shade400],
+    [Colors.orange.shade200, Colors.orange.shade400],
+    [Colors.yellow.shade200, Colors.amber.shade400],
+    [Colors.red.shade200, Colors.red.shade400],
   ];
-
-  void changeQuote() {
-    setState(() {
-      quote = quotes[Random().nextInt(quotes.length)];
-      color = colors[Random().nextInt(colors.length)];
-    });
-    _controller.reset();
-    _controller.forward();
-  }
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 4),
-    );
-    _animation = Tween(begin: 0.0, end: 1.0).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
-    _controller.repeat();
+      duration: Duration(seconds: 6),
+    )..repeat(reverse: true);
+    _colorAnimation = ColorTween(
+      begin: gradients.first.first,
+      end: gradients.last.last,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  void changeQuote() {
+    setState(() {
+      quote = quotes[Random().nextInt(quotes.length)];
+    });
   }
 
   @override
@@ -63,32 +59,38 @@ class _InspirationAppState extends State<InspirationApp>
 
   @override
   Widget build(BuildContext context) {
-    final gradient = Gradient.linear(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [color.withOpacity(0.4), color.withOpacity(0.8)],
-    );
     return Scaffold(
       body: InkWell(
         onTap: changeQuote,
-        child: AnimatedContainer(
-          duration: Duration(seconds: 1),
-          decoration: BoxDecoration(
-            gradient: gradient,
-          ),
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Text(
-                quote,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.greatVibes(
-                  fontSize: 28.0,
-                  color: Colors.white.withOpacity(_animation.value),
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (BuildContext context, Widget? child) {
+            return Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    _colorAnimation.value!.withOpacity(0.7),
+                    _colorAnimation.value!.withOpacity(0.9),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
               ),
-            ),
-          ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Text(
+                    quote,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.greatVibes(
+                      fontSize: 28.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
