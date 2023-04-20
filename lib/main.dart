@@ -26,7 +26,7 @@ var database = FirebaseDatabase.instance;
 late final SharedPreferences appPrefs;
 final themeController = ThemeController(appPrefs);
 final stepsNotifier = ValueNotifier("0");
-final stepsList = <StepEvent>[];
+final List<StepEvent> stepsList = [];
 
 //User object
 var testUser = SsUser(
@@ -36,7 +36,7 @@ var testUser = SsUser(
   stepsMap: {
     DateFormat('M-d-yy').format(DateTime.now()): stepsNotifier.value,
   },
-  stepsGoal: 10000,
+  stepsGoal: 5000,
 );
 
 //Use debugPrint() to print stuff
@@ -98,16 +98,43 @@ class _MainPageState extends State<MainPage> {
     const Profile(title: "Profile"),
   ];
   late Stream<StepCount> stepCountStream;
+  final startOfWeek = DateFormat('M-d-yy')
+      .format(DateTime.now().subtract(Duration(days: DateTime.now().weekday)));
 
   Future<void> onStepCount(StepCount event) async {
     var thisStep = StepEvent(
       stepCount: event.steps.toString(),
       date: DateFormat("M-dd-y").format(event.timeStamp),
     );
-    stepsList.add(thisStep);
-    debugPrint("Steps: ${thisStep.stepCount} - At: ${thisStep.date}");
-    var uid = FirebaseAuth.instance.currentUser!.uid;
-    await database.ref('Users/$uid/steps').set(thisStep.toJson());
+    Iterable<DataSnapshot> dbStepsList = await database
+        .ref('Users/${FirebaseAuth.instance.currentUser!.uid}/steps')
+        .once()
+        .then((value) => value.snapshot.children);
+    for (var step in dbStepsList) {
+      //add steps since the start of the week to stepsList
+      if (step.key.toString().compareTo(startOfWeek) >= 0 &&
+          step.key.toString().compareTo(startOfWeek) < 7) {
+        stepsList.add(
+          StepEvent(
+            stepCount: step.value.toString(),
+            date: step.key.toString(),
+          ),
+        );
+      }
+    }
+    database
+        .ref('Users/${FirebaseAuth.instance.currentUser!.uid}/steps')
+        .once();
+    //debugPrint("Steps: ${thisStep.stepCount} - At: ${thisStep.date}");
+    //comapre this step's date to step on db
+    // if (thisStep.date != dbStepRef.key) {
+    //   await database
+    //       .ref('Users/${FirebaseAuth.instance.currentUser!.uid}/steps')
+    //       .set(thisStep.toJson());
+    // }
+    await database
+        .ref('Users/${FirebaseAuth.instance.currentUser!.uid}/steps')
+        .set(thisStep.toJson());
     stepsNotifier.value = event.steps.toString();
   }
 

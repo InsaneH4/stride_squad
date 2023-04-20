@@ -30,12 +30,12 @@ class AuthService {
     if (authResult.additionalUserInfo!.isNewUser) {
       var newUser = SsUser(
         username: user!.displayName!.replaceAll(" ", ""),
-        joinDate: DateFormat('M/d/yy').format(DateTime.now()),        
+        joinDate: DateFormat('M/d/yy').format(DateTime.now()),
         name: user.displayName!,
         stepsMap: {
           DateFormat('M-d-yy').format(DateTime.now()): stepsNotifier.value,
         },
-        stepsGoal: 10000,
+        stepsGoal: 5000,
       );
       debugPrint(newUser.toJson().toString());
       await database

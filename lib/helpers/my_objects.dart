@@ -4,14 +4,14 @@ import 'package:firebase_database/firebase_database.dart';
 class SsUser {
   String username;
   String joinDate;
-  String name;  
+  String name;
   int stepsGoal;
   Map<Object?, Object?> stepsMap;
 
   SsUser({
     required this.username,
     required this.joinDate,
-    required this.name,    
+    required this.name,
     required this.stepsMap,
     required this.stepsGoal,
   });
@@ -21,7 +21,7 @@ class SsUser {
     return {
       'username': username,
       'joinDate': joinDate,
-      'name': name,      
+      'name': name,
       'stepsGoal': stepsGoal,
     };
   }
@@ -37,25 +37,11 @@ class SsUser {
     return SsUser(
       username: fbData['username'],
       joinDate: fbData['joinDate'],
-      name: fbData['name'],      
+      name: fbData['name'],
       stepsMap: fbData['steps'],
       stepsGoal: fbData['stepsGoal'],
     );
   }
-}
-
-class Team {
-  String teamName;
-  List<SsUser> teamMembers;
-  int teamSteps;
-  int teamGoal;
-
-  Team({
-    required this.teamName,
-    required this.teamMembers,
-    required this.teamSteps,
-    required this.teamGoal,
-  });
 }
 
 class StepEvent {
@@ -71,4 +57,18 @@ class StepEvent {
   Map<String, String> toJson() => {
         date: stepCount,
       };
+
+  factory StepEvent.fromJson(DatabaseEvent snapshot) {
+    //Converts JSON syntax from firebase to object
+
+    //Stores the data from firebase in a map
+    var fbData = snapshot.snapshot.value as Map<dynamic, dynamic>;
+    //Converts the stepDates and stepCounts lists to iterables
+    //Creates a map from the two lists
+    //Returns the user object
+    return StepEvent(
+      stepCount: fbData['stepCount'],
+      date: fbData['date'],
+    );
+  }
 }

@@ -25,12 +25,6 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     debugPrint(myUID);
-    // return FutureBuilder(
-    //   future: database.ref('Users/$myUID').once(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.hasData) {
-    //       final SsUser curUser = SsUser.fromJson(snapshot.data!);
-    //       stepsGoal = curUser.stepsGoal;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
