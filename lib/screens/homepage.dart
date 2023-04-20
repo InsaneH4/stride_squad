@@ -68,10 +68,10 @@ class _HomepageState extends State<Homepage> {
                     ValueListenableBuilder(
                       valueListenable: stepsNotifier,
                       builder: (context, value, child) => Text(
-                        'You: $value/${curUser.stepsGoal}',
+                        '$value',
                         style: const TextStyle(
                           color: Colors.teal,
-                          fontSize: 25,
+                          fontSize: 30,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -110,7 +110,7 @@ class _HomepageState extends State<Homepage> {
                     //}
                     color: RingColorScheme(ringColor: Colors.teal),
                     radius: 140,
-                    width: 25,
+                    width: 30,
                   ),
                 ),
               ],
