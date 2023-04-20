@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:animate_gradient/animate_gradient.dart';
-import 'package:username_generator/username_generator.dart';
 
 class Leaderboard extends StatefulWidget {
   const Leaderboard({super.key, required this.title});
