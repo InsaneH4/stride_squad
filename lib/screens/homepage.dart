@@ -56,49 +56,42 @@ class _HomepageState extends State<Homepage> {
           //   style: Theme.of(context).textTheme.headlineSmall,
           //   textAlign: TextAlign.center,
           // ),
-          FutureBuilder(
-            future: database.ref('Users/$myUID').once(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                final SsUser curUser = SsUser.fromJson(snapshot.data!);
-                stepsGoal = curUser.stepsGoal;
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ValueListenableBuilder(
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              FutureBuilder(
+                future: database.ref('Users/$myUID').once(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final SsUser curUser = SsUser.fromJson(snapshot.data!);
+                    stepsGoal = curUser.stepsGoal;
+                    return ValueListenableBuilder(
                       valueListenable: stepsNotifier,
                       builder: (context, value, child) => Text(
-                        '$value',
+                        value,
                         style: const TextStyle(
-                          color: Colors.teal,
-                          fontSize: 30,
+                          color: Colors.blueAccent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 72,
                         ),
                         textAlign: TextAlign.center,
                       ),
-                    ),
-                  ],
-                );
-              } else {
-                return Column(
-                  children: const [
-                    Text(
-                      'You: ...',
+                    );
+                  } else {
+                    return const Text(
+                      '...',
                       style: TextStyle(
                         color: Colors.teal,
                         fontSize: 25,
                       ),
                       textAlign: TextAlign.center,
-                    ),
-                  ],
-                );
-              }
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.all(160),
-            child: Stack(
-              children: [
-                ValueListenableBuilder(
+                    );
+                  }
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(160),
+                child: ValueListenableBuilder(
                   valueListenable: stepsNotifier,
                   builder: (context, value, child) => Ring(
                     percent: int.parse(value) > stepsGoal
@@ -109,8 +102,8 @@ class _HomepageState extends State<Homepage> {
                     width: 30,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           Text(
             'Week of ${firstDayOfWeek.month}/${firstDayOfWeek.day}',
