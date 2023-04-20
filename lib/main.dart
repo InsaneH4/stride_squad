@@ -16,7 +16,7 @@ import 'helpers/auth_check.dart';
 import 'helpers/my_objects.dart';
 import 'helpers/theme_conf.dart';
 import 'screens/homepage.dart';
-import 'screens/chat.dart';
+import 'screens/quotes.dart';
 import 'screens/leaderboard.dart';
 import 'screens/profile.dart';
 
